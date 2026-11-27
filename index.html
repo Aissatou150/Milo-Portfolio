@@ -6,11 +6,12 @@
 <title>Aïssatou Gueye · Data Analyst</title>
 <meta name="description" content="Portfolio d'Aïssatou Gueye, Data Analyst et statisticienne, étudiante en Master 1 Économétrie, Statistiques à Aix-Marseille Université. Stage de 3 mois recherché à partir de mai 2027.">
 <meta name="theme-color" content="#2f3b27">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/scenes.css">
+<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/scenes.css?v=16">
 </head>
 <body>
 <a class="skip" href="#apropos">Aller au contenu</a>
+<canvas id="bg" aria-hidden="true"></canvas>
 
 <!-- Écran de chargement : Milo se dessine en plan d'architecte -->
 <div id="pre" aria-hidden="true">
@@ -61,8 +62,30 @@
 
 <main>
 
+<!-- ============ Bienvenue : Milo en très grand, avec sa pelote ============ -->
+<section id="bienvenue" data-s="Bienvenue" data-mood="night" aria-label="Bienvenue">
+  <div class="wm-text">
+    <p class="lab fade hero-fade">Un petit mot avant de commencer</p>
+    <h2 class="wm-word" data-split>Bienvenue !</h2>
+    <p class="wm-sub fade hero-fade">Je suis Milo, le chaton d'Aïssatou.</p>
+    <a class="btn fade hero-fade" href="#accueil">Commencer la visite</a>
+  </div>
+  <svg class="wm-svg" id="wmSvg" viewBox="0 0 1400 800" preserveAspectRatio="xMaxYMax meet" role="img" aria-label="Milo, très grand, joue avec une pelote de laine rose dont le fil se déroule">
+    <ellipse cx="900" cy="772" rx="520" ry="24" fill="#000" opacity=".28"/>
+    <path id="wmTail" d="M0 0" fill="none" stroke="#ff8fa3" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+    <g class="wm-milo"><use href="#milo" x="640" y="20" width="760" height="760"/></g>
+    <path id="wmThread" d="M0 0" fill="none" stroke="#ff8fa3" stroke-width="5" stroke-linecap="round"/>
+    <g id="wmBall" transform="translate(560 700)">
+      <circle r="80" fill="#ff8fa3"/>
+      <g id="wmBallRot" fill="none" stroke="#e0607a" stroke-width="6" stroke-linecap="round"><path d="M-72 -30 Q0 -72 72 -30"/><path d="M-80 10 Q0 -32 80 10"/><path d="M-62 52 Q0 14 62 52"/><path d="M-30 -72 Q-72 0 -30 72"/><path d="M30 -74 Q72 0 30 74"/></g>
+      <circle cx="-26" cy="-30" r="20" fill="#fff" opacity=".22"/>
+    </g>
+  </svg>
+  <p class="wm-hint small fade hero-fade">Déplace la souris : la pelote te suit.</p>
+</section>
+
 <!-- ============ Accueil ============ -->
-<header id="accueil" data-s="Accueil">
+<header id="accueil" data-s="Accueil" data-mood="night">
   <canvas id="stars" aria-hidden="true"></canvas>
   <svg class="milo-hero" id="miloHero" viewBox="0 0 240 240" role="img" aria-label="Milo, le chat orange qui te guide dans ce portfolio"><use href="#milo"/></svg>
   <h1 class="hero-name" aria-label="Aïssatou Gueye"><span data-split>Aïssatou</span><span class="l2" data-split>Gueye</span></h1>
@@ -77,22 +100,18 @@
   <div class="stick">
     <svg class="full" id="cloudsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"></svg>
     <svg class="milo-fly" id="miloFly" viewBox="0 0 240 240"><use href="#milo"/></svg>
-    <div class="scene-txt" id="cloudTxt"><h2>Bienvenue sur mon île</h2></div>
-    <div class="veil" style="background:var(--moss-deep)"></div>
+    <div class="scene-txt" id="cloudTxt"><h2>Découvrons ensemble son univers</h2></div>
   </div>
 </section>
 
 <!-- ============ À propos ============ -->
-<section id="apropos" data-s="À propos">
+<section id="apropos" data-s="À propos" data-mood="moss">
   <div class="wrap about-grid">
     <div class="portrait">
-      <div class="arch">
-        <span class="ini" aria-hidden="true">AG</span>
-        <img src="assets/img/aissatou.jpg" alt="Portrait d'Aïssatou Gueye" onerror="this.remove()">
-      </div>
+      <div class="arch"><img src="assets/img/portrait.jpg" alt="Portrait d'Aïssatou Gueye, souriante, les bras croisés" width="906" height="1541"></div>
       <svg class="orbit" viewBox="0 0 130 130" aria-hidden="true"><circle cx="65" cy="65" r="60" fill="none" stroke="#e8c98e" stroke-width="1.5" stroke-dasharray="3 7"/><circle cx="65" cy="5" r="5" fill="#ff8a3d"/></svg>
       <svg class="milo-sit" viewBox="0 0 240 240" aria-hidden="true"><use href="#milo"/></svg>
-      <span class="tag">Marseille</span>
+      <span class="tag">Aix-en-Provence</span>
     </div>
     <div class="about-text">
       <h2>À propos de moi</h2>
@@ -107,70 +126,84 @@
   </div>
 </section>
 
-<!-- ============ Valeurs animées ============ -->
-<section id="valeurs" data-s="Valeurs">
-  <div class="wrap">
-    <h2>Ce qui me définit</h2>
-    <p>Quatre valeurs, que je retrouve dans tout ce que j'entreprends.</p>
-    <div class="vals-grid">
-      <figure class="val">
-        <svg viewBox="0 0 240 160" role="img" aria-label="Milo saute par-dessus un vide">
-          <rect class="v-ground" x="0" y="110" width="80" height="50"/><rect class="v-ground" x="160" y="110" width="80" height="50"/>
-          <rect class="v-void" x="80" y="110" width="80" height="50"/>
-          <g transform="translate(14 0)"><g class="v-oser-x"><g class="v-oser-y"><use href="#milo" x="0" y="52" width="64" height="64"/></g></g></g>
-        </svg>
-        <figcaption><h3>Oser</h3><p>Je dis oui avant de me sentir prête, puis je me donne les moyens d'y arriver.</p></figcaption>
-      </figure>
-      <figure class="val">
-        <svg viewBox="0 0 240 160" role="img" aria-label="Une lumière passe de personne en personne">
-          <circle class="v-p v-p1" cx="40" cy="90" r="24"/><circle class="v-p v-p2" cx="120" cy="90" r="24"/><circle class="v-p v-p3" cx="200" cy="90" r="24"/>
-          <circle class="v-orb" r="12" cx="0" cy="0"/>
-        </svg>
-        <figcaption><h3>Transmettre</h3><p>Je rends les résultats clairs pour ceux qui n'ont pas le jargon, et j'aide les plus jeunes à progresser.</p></figcaption>
-      </figure>
-      <figure class="val">
-        <svg viewBox="0 0 240 160" role="img" aria-label="Une loupe révèle des points cachés">
-          <defs><clipPath id="lensclip"><circle class="v-sweep" r="26"/></clipPath></defs>
-          <g id="dots-grid"></g>
-          <g class="v-sweep"><circle class="v-lens" r="26"/><line class="v-handle" x1="19" y1="19" x2="38" y2="38"/></g>
-        </svg>
-        <figcaption><h3>Curiosité</h3><p>Quand il me manque une compétence, je me forme : un nouvel outil n'est jamais un obstacle.</p></figcaption>
-      </figure>
-      <figure class="val">
-        <svg viewBox="0 0 240 160" role="img" aria-label="Des points se rassemblent en cercle">
-          <g class="v-ring" id="join-g"></g>
-        </svg>
-        <figcaption><h3>Engagement</h3><p>Je donne de mon temps aux collectifs que je dirige : le REBAR, la CFED, Ndajeem Ndimbaal.</p></figcaption>
-      </figure>
-    </div>
+<!-- ============ Ce qui me définit : quatre chapitres ============ -->
+<section class="scene s-vals" id="valeurs" data-scene="vals" data-s="Valeurs" data-mood="warm" style="--h:520vh;--hm:440vh">
+  <div class="stick">
+    <article class="vp">
+      <div class="vtxt"><p class="vnum">Ce qui me définit, 1 sur 4</p><h2 class="vword">Oser</h2><p class="vsent">Je dis oui avant de me sentir prête, puis je me donne les moyens d'y arriver.</p></div>
+      <svg class="vart" viewBox="0 0 600 420" role="img" aria-label="Milo saute par-dessus un vide entre deux falaises">
+        <defs><linearGradient id="abyss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1308" stop-opacity="0"/><stop offset="1" stop-color="#0b1308" stop-opacity=".95"/></linearGradient></defs>
+        <circle class="v-sun" cx="470" cy="120" r="62"/>
+        <path d="M0 300 L120 226 L220 290 L330 186 L430 280 L600 196 V420 H0Z" fill="#2f3b27" opacity=".75"/>
+        <rect class="v-abyss" x="190" y="300" width="220" height="120"/><rect class="v-void" x="190" y="300" width="220" height="116"/>
+        <path class="v-ground" d="M0 300 H190 V420 H0Z"/><rect class="v-ground2" x="0" y="300" width="190" height="14"/>
+        <path class="v-ground" d="M410 300 H600 V420 H410Z"/><rect class="v-ground2" x="410" y="300" width="190" height="14"/>
+        <g transform="translate(20 0)"><g class="v-oser-x"><g class="v-oser-y"><use href="#milo" x="0" y="155" width="150" height="150"/></g></g></g>
+      </svg>
+    </article>
+    <article class="vp">
+      <div class="vtxt"><p class="vnum">Ce qui me définit, 2 sur 4</p><h2 class="vword">Transmettre</h2><p class="vsent">Je rends les résultats clairs pour ceux qui n'ont pas le jargon, et j'aide les plus jeunes à progresser.</p></div>
+      <svg class="vart" viewBox="0 0 600 420" role="img" aria-label="Une lumière passe de personne en personne et les illumine">
+        <defs><radialGradient id="hg"><stop offset="0" stop-color="#ffd28a" stop-opacity=".85"/><stop offset="1" stop-color="#ffd28a" stop-opacity="0"/></radialGradient></defs>
+        <g><circle class="v-halo v-h1" cx="110" cy="250" r="100" fill="url(#hg)"/><circle class="v-p v-p1" cx="110" cy="236" r="36"/><path class="v-p v-p1" d="M42 340 Q42 276 110 276 Q178 276 178 340Z"/></g>
+        <g><circle class="v-halo v-h2" cx="300" cy="250" r="100" fill="url(#hg)"/><circle class="v-p v-p2" cx="300" cy="236" r="36"/><path class="v-p v-p2" d="M232 340 Q232 276 300 276 Q368 276 368 340Z"/></g>
+        <g><circle class="v-halo v-h3" cx="490" cy="250" r="100" fill="url(#hg)"/><circle class="v-p v-p3" cx="490" cy="236" r="36"/><path class="v-p v-p3" d="M422 340 Q422 276 490 276 Q558 276 558 340Z"/></g>
+        <circle class="v-orb t3" r="14"/><circle class="v-orb t2" r="16"/><circle class="v-orb t1" r="18"/><circle class="v-orb" r="20"/>
+      </svg>
+    </article>
+    <article class="vp">
+      <div class="vtxt"><p class="vnum">Ce qui me définit, 3 sur 4</p><h2 class="vword">Curiosité</h2><p class="vsent">Quand il me manque une compétence, je me forme. Un nouvel outil n'est jamais un obstacle.</p></div>
+      <svg class="vart" viewBox="0 0 600 420" role="img" aria-label="Une loupe parcourt une grille de points et les révèle en orange">
+        <defs><clipPath id="lensclip"><circle class="v-sweep" r="48"/></clipPath></defs>
+        <g id="dots-grid"></g>
+        <g class="v-sweep"><circle class="v-lens" r="48"/><line class="v-handle" x1="34" y1="34" x2="74" y2="74"/></g>
+      </svg>
+    </article>
+    <article class="vp">
+      <div class="vtxt"><p class="vnum">Ce qui me définit, 4 sur 4</p><h2 class="vword">Engagement</h2><p class="vsent">Je donne de mon temps aux collectifs que je dirige : le REBAR, la CFED, Ndajeem Ndimbaal.</p></div>
+      <svg class="vart" viewBox="0 0 600 420" role="img" aria-label="Des points se rassemblent en cercle autour d'un point central">
+        <circle class="v-ripple" cx="300" cy="210" r="140"/><circle class="v-ripple" cx="300" cy="210" r="140"/><circle class="v-ripple" cx="300" cy="210" r="140"/>
+        <g id="join-g"></g>
+      </svg>
+    </article>
+    <div class="vbarwrap"><i id="vbar"></i></div>
+    <div class="vnav"><button type="button">Oser</button><button type="button">Transmettre</button><button type="button">Curiosité</button><button type="button">Engagement</button></div>
   </div>
 </section>
 
-<!-- ============ Compétences ============ -->
-<section id="competences" data-s="Compétences">
+<!-- ============ Compétences : grandes tuiles ============ -->
+<section id="competences" data-s="Compétences" data-mood="warm">
   <div class="wrap">
     <h2>Mes compétences et mes atouts</h2>
-    <div class="skills">
-      <div><h3>Données</h3><ul><li>Python</li><li>R</li><li>Stata</li><li>SPSS</li><li>SQL</li><li>PostgreSQL</li><li>BigQuery</li><li>AWS</li><li>Databricks</li></ul></div>
-      <div><h3>Visualisation</h3><ul><li>Power BI</li><li>Dash</li><li>Metabase</li><li>Looker Studio</li><li>R Shiny</li></ul></div>
-      <div><h3>ML et engineering</h3><ul><li>Régression</li><li>Analyse multivariée</li><li>scikit-learn</li><li>LLM / RAG</li><li>ETL / API</li><li>CI/CD</li></ul></div>
-      <div><h3>Collecte et autres</h3><ul><li>ODK</li><li>KoboToolbox</li><li>Survey Solution</li><li>QGIS</li><li>Excel / VBA</li><li>LaTeX</li><li>Canva</li><li>Figma</li></ul></div>
+    <div class="sk-intro">
+      <figure class="sk-photo"><img src="assets/img/bureau.jpg" alt="Aïssatou Gueye à son bureau, devant un écran de code et de tableau de bord" loading="lazy"><figcaption>Entre code et tableaux de bord</figcaption></figure>
+      <div>
+        <p>Je collecte, je nettoie, je modélise, puis je restitue. Voici les outils que j'utilise pour le faire.</p>
+        <p class="small">Mes atouts : relier la rigueur statistique à la clarté de la restitution, me former vite sur ce qui manque, et coordonner une équipe vers un livrable.</p>
+      </div>
     </div>
-    <p class="strengths">Mes atouts : relier la rigueur statistique à la clarté de la restitution, me former vite sur ce qui manque, et coordonner une équipe vers un livrable.</p>
+    <div class="chips" role="group" aria-label="Filtrer les compétences">
+      <button class="chip-b" data-skf="all" aria-pressed="true">Tout</button>
+      <button class="chip-b" data-skf="Données" aria-pressed="false">Données</button>
+      <button class="chip-b" data-skf="Visualisation" aria-pressed="false">Visualisation</button>
+      <button class="chip-b" data-skf="ML et engineering" aria-pressed="false">ML et engineering</button>
+      <button class="chip-b" data-skf="Collecte et autres" aria-pressed="false">Collecte et autres</button>
+    </div>
+    <div class="skgrid" id="skillGrid"></div>
   </div>
 </section>
 
 <!-- ============ CV en pleine page ============ -->
-<section class="scene s-doc" id="cv" data-scene="cv" data-s="CV" style="--h:340vh;--hm:300vh">
+<section class="scene s-doc" id="cv" data-scene="cv" data-s="CV" data-mood="moss" style="--h:340vh;--hm:300vh">
   <div class="stick">
     <div class="doc-title" id="docTitle"><h2>Mon CV</h2><p>Fais défiler : il s'ouvre en grand.</p></div>
-    <div class="doc-wrap" id="docWrap"><img id="docImg" src="assets/cv/cv-aissatou-gueye.png" alt="Mon CV : Aïssatou Gueye, Data Analyst, Master 1 Économétrie, Statistiques. Expériences chez Myriad, à l'ANSD et à l'ENSAE, projets académiques, compétences et leadership."></div>
-    <a class="btn doc-dl" id="docDl" href="assets/cv/cv-aissatou-gueye.pdf" download>Télécharger le PDF</a>
+    <div class="doc-wrap" id="docWrap"><img id="docImg" src="assets/cv/cv-aissatou-gueye.png?v=2" alt="Mon CV : Aïssatou Gueye, Data Analyst, Master 1 Économétrie, Statistiques. Expériences chez Myriad, à l'ANSD et à l'ENSAE, projets académiques, compétences et leadership."></div>
+    <a class="btn doc-dl" id="docDl" href="assets/cv/cv-aissatou-gueye.pdf?v=2" download>Télécharger le PDF</a>
   </div>
 </section>
 
 <!-- ============ LinkedIn en pleine page ============ -->
-<section class="scene s-li" id="linkedin" data-scene="li" data-s="LinkedIn" style="--h:380vh;--hm:340vh">
+<section class="scene s-li" id="linkedin" data-scene="li" data-s="LinkedIn" data-mood="moss" style="--h:380vh;--hm:340vh">
   <div class="stick">
     <div class="li-title" id="liTitle"><h2>Mon profil LinkedIn</h2><p>Fais défiler : tu parcours mon profil comme sur LinkedIn.</p></div>
     <div class="li-frame" id="liFrame">
@@ -193,62 +226,73 @@
       <g id="rider"><g id="mcloud"></g><use href="#milo" x="-60" y="-100" width="120" height="120"/></g>
     </svg>
     <canvas id="tbfx"></canvas>
-    <div class="veil" style="background:var(--moss)"></div>
   </div>
 </section>
 
-<!-- ============ Ma force principale ============ -->
-<section class="scene s-force" id="force" data-scene="force" data-s="Ma force" style="--h:260vh;--hm:230vh">
+<!-- ============ Ma force : la persuasion ============ -->
+<section class="scene s-force" id="force" data-scene="force" data-s="Ma force" data-mood="warm" style="--h:280vh;--hm:240vh">
   <div class="stick">
     <div>
       <p class="lab">Ma force principale</p>
       <h2>La persuasion</h2>
-      <p>Je l'exerce <b>intentionnellement</b> : avant de parler, je cherche ce qui compte pour la personne en face, puis je construis mon argument autour de cela.</p>
-      <p><b>La preuve.</b> À la tête du REBAR, j'ai rassemblé les jeunes de Bargny autour d'activités éducatives et j'ai porté le projet auprès des autorités de la commune.</p>
-      <p class="conv"><span id="convN">0</span> <small>personnes convaincues sur 40, dans cette scène</small></p>
+      <p>Je sais bien argumenter. Je persuade facilement, et je sais aussi dissuader : en général, je parviens à convaincre les personnes en face de moi.</p>
+      <p class="why"><b>Pourquoi c'est ma force.</b> Une idée juste ne suffit pas : il faut la faire comprendre et la faire accepter. Savoir argumenter me permet de faire avancer une décision, de rallier une équipe et de défendre un choix de méthode.</p>
     </div>
-    <svg viewBox="0 0 700 600" role="img" aria-label="Milo, sur une estrade, parle dans un mégaphone ; la foule devant lui s'illumine en orange">
-      <ellipse cx="350" cy="560" rx="330" ry="22" fill="#000" opacity=".25"/>
-      <rect x="60" y="470" width="190" height="80" rx="6" fill="#b9753e"/><rect x="60" y="470" width="190" height="14" rx="6" fill="#d89a5e"/>
-      <use href="#milo" x="68" y="262" width="190" height="190"/>
-      <path d="M232 340 L332 288 L332 384 Z" fill="#e8c98e"/><rect x="214" y="330" width="26" height="20" rx="4" fill="#8f5a2e"/>
-      <path d="M332 288 Q350 336 332 384" fill="none" stroke="#f2e9d4" stroke-width="6" stroke-linecap="round"/>
-      <path class="sw" d="M356 306 Q384 336 356 366"/><path class="sw" d="M356 306 Q384 336 356 366"/><path class="sw" d="M356 306 Q384 336 356 366"/>
+    <svg viewBox="0 0 760 620" role="img" aria-label="Milo, sur une estrade, parle dans un mégaphone. Sa bulle passe de Non à Peut-être puis D'accord, et la foule devant lui sourit et passe à l'orange.">
+      <defs>
+        <radialGradient id="spot"><stop offset="0" stop-color="#ffd28a" stop-opacity=".4"/><stop offset="1" stop-color="#ffd28a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d89a5e"/><stop offset="1" stop-color="#8f5a2e"/></linearGradient>
+      </defs>
+      <ellipse cx="200" cy="520" rx="260" ry="90" fill="url(#spot)"/>
+      <ellipse cx="400" cy="598" rx="370" ry="18" fill="#000" opacity=".25"/>
+      <path d="M50 500 H330 V582 H50Z" fill="url(#wood)"/><rect x="50" y="488" width="280" height="16" rx="6" fill="#e6b27a"/>
+      <g class="milo-big"><use href="#milo" x="60" y="236" width="270" height="270"/></g>
+      <path d="M262 346 L384 296 L384 392 L262 360Z" fill="#e8c98e"/><ellipse cx="384" cy="344" rx="10" ry="48" fill="#f2e9d4"/><rect x="236" y="338" width="34" height="26" rx="6" fill="#8f5a2e"/>
+      <path class="sw" d="M404 300 Q440 344 404 388"/><path class="sw" d="M404 300 Q440 344 404 388"/><path class="sw" d="M404 300 Q440 344 404 388"/>
+      <g id="bubble">
+        <path d="M104 24 h210 q26 0 26 26 v52 q0 26 -26 26 h-112 l-34 40 l6 -40 h-70 q-26 0 -26 -26 v-52 q0 -26 26 -26z" fill="#f2e9d4"/>
+        <text class="bt on" x="209" y="86">Non.</text><text class="bt" x="209" y="86">Peut-être…</text><text class="bt" x="209" y="86">D'accord !</text>
+      </g>
       <g id="crowd"></g>
     </svg>
-    <div class="veil" style="background:var(--moss)"></div>
   </div>
 </section>
 
 <!-- ============ Passage : Milo court ============ -->
 <section class="scene s-run" id="passage2" data-scene="run" style="--h:280vh;--hm:220vh" aria-hidden="true">
   <div class="stick">
-    <div class="run-txt"><p id="runA">Une force, c'est bien.</p><p id="runB" style="opacity:0">Un axe de progrès, c'est mieux.</p></div>
+    <div class="run-txt"><p id="runA">Convaincre, je sais faire.</p><p id="runB" style="opacity:0">Tenir mon agenda, j'y travaille.</p></div>
     <svg class="full" id="runsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
       <circle cx="1180" cy="560" r="150" fill="#ff8a3d" opacity=".18"/><circle cx="1180" cy="560" r="86" fill="#ff8a3d" opacity=".85"/>
       <g id="hill1"></g><g id="hill2"></g><g id="hill3"></g>
       <rect x="0" y="720" width="1600" height="200" fill="#232d1d"/>
       <line id="ground" x1="0" y1="760" x2="1600" y2="760" stroke="#f2e9d4" stroke-opacity=".45" stroke-width="5" stroke-dasharray="60 40"/>
-      <g id="flag"><rect x="0" y="470" width="14" height="260" fill="#f2e9d4"/><rect x="14" y="480" width="360" height="110" rx="6" fill="#ff8a3d"/><text x="40" y="548" font-family="Arial Black,Arial,sans-serif" font-size="38" fill="#232d1d">Mon axe de progrès</text></g>
+      <g id="flag"><rect x="0" y="470" width="14" height="260" fill="#f2e9d4"/><rect x="14" y="480" width="420" height="110" rx="6" fill="#ff8a3d"/><text x="40" y="548" font-family="Arial Black,Arial,sans-serif" font-size="36" fill="#232d1d">Mon axe : le temps</text></g>
       <g id="runner"><circle class="dust" cx="400" cy="730" r="22"/><circle class="dust" cx="400" cy="730" r="22"/><circle class="dust" cx="400" cy="730" r="22"/><use href="#milo" x="400" y="540" width="220" height="220"/></g>
     </svg>
-    <div class="veil" style="background:var(--moss-deep)"></div>
   </div>
 </section>
 
 <!-- ============ Mon axe d'amélioration ============ -->
-<section class="scene s-axe" id="axe" data-scene="axe" data-s="Mon axe" style="--h:260vh;--hm:230vh">
+<section class="scene s-axe" id="axe" data-scene="axe" data-s="Mon axe" data-mood="dusk" style="--h:300vh;--hm:260vh">
   <div class="stick">
     <div>
       <p class="lab">Mon axe d'amélioration</p>
       <h2>Organisation et sens des priorités</h2>
-      <p>Je travaille ma gestion du temps : savoir ce qui doit être fait maintenant, ce qui doit être planifié, et ce que je dois savoir lâcher.</p>
-      <p class="axe-act"><b>Mon action concrète.</b> Chaque lundi, je liste mes tâches de la semaine et je les classe avec deux questions : est-ce urgent, est-ce important ? Je bloque ensuite des créneaux dans mon agenda pour ce qui est important.</p>
+      <p>Je travaille ma gestion du temps : savoir ce qui doit être fait maintenant, ce qui se planifie, et ce que je dois savoir lâcher.</p>
+      <p class="axe-act"><b>Ma règle.</b> Depuis notre dernière séance de cours, je me suis fixé une règle. Chaque lundi, je liste mes tâches de la semaine et je les classe avec deux questions : est-ce urgent ? est-ce important ? Je bloque ensuite des créneaux dans mon agenda pour ce qui est important.</p>
+      <p class="small">Exemple : ma semaine du 23 au 27 novembre. Deux journées de cours de macroéconomie, un TD, le Career Day du vendredi à préparer, un projet de développement à rendre et des révisions pour les examens à venir.</p>
     </div>
-    <div class="board" id="board" role="img" aria-label="Huit tâches éparpillées se rangent dans quatre cases : à faire maintenant, à planifier, à limiter, à éviter">
-      <span class="q">Maintenant</span><span class="q">À planifier</span><span class="q">À limiter</span><span class="q">À éviter</span>
+    <div class="axe-art">
+      <div class="board" id="board" role="img" aria-label="Huit tâches de la semaine se rangent dans quatre cases : maintenant, à planifier, à limiter, à éviter">
+        <span class="q">Maintenant</span><span class="q">À planifier</span><span class="q">À limiter</span><span class="q">À éviter</span>
+      </div>
+      <div class="agenda" id="agenda" role="img" aria-label="Agenda de la semaine du 23 au 27 novembre : les cours en crème, mes créneaux bloqués en orange">
+        <div class="ag-head"><span></span></div>
+        <div class="ag-body"><div class="ag-hours"></div></div>
+        <p class="ag-cap">En crème, mes cours et le Career Day. En orange, les créneaux que je bloque pour le reste.</p>
+      </div>
     </div>
-    <div class="veil" style="background:var(--moss-deep)"></div>
   </div>
 </section>
 
@@ -268,47 +312,73 @@
   </div>
 </section>
 
-<!-- ============ Outils contre le mauvais stress ============ -->
-<section id="stress" data-s="Anti-stress">
+<!-- ============ Stress ponctuel : la respiration ============ -->
+<section id="stress-p" data-s="Stress ponctuel" data-mood="sea">
+  <canvas id="breathCv" aria-hidden="true"></canvas>
+  <svg class="breath-milo" id="breathMilo" viewBox="0 0 240 240" role="img" aria-label="Milo inspire et expire lentement"><use href="#milo"/></svg>
+  <div class="bw" id="breathWord" aria-hidden="true">Inspire</div>
   <div class="wrap">
-    <h2>Mes outils contre le mauvais stress</h2>
-    <p>Je ne réponds pas de la même façon à un stress ponctuel et à un stress qui dure.</p>
-    <div class="tools">
-      <figure class="tool">
-        <svg viewBox="0 0 300 200" role="img" aria-label="Un cercle qui se gonfle et se dégonfle au rythme de la respiration">
-          <circle class="orb2" cx="150" cy="100" r="86" fill="#8fd9cc"/><circle class="orb" cx="150" cy="100" r="86" fill="none" stroke="#f2e9d4" stroke-width="3"/><circle class="orb" cx="150" cy="100" r="56" fill="#f2e9d4" opacity=".9"/>
-          <text class="in-t" x="150" y="108" fill="#1d5a5f" style="fill:#1d5a5f">Inspire</text><text class="out-t" x="150" y="108" style="fill:#1d5a5f">Expire</text>
-        </svg>
-        <figcaption><p class="when">Stress ponctuel</p><h3>La respiration</h3><p>Inspirer par le nez, souffler longuement : je ralentis avant de réagir.</p></figcaption>
-      </figure>
-      <figure class="tool">
-        <svg viewBox="0 0 300 200" role="img" aria-label="Une petite flamme éclaire des vagues calmes">
-          <rect width="300" height="200" fill="none"/>
-          <circle class="glow" cx="150" cy="86" r="64" fill="#e8c98e"/>
-          <g class="flame"><path d="M150 52 C 136 74 138 92 150 100 C 162 92 164 74 150 52 Z" fill="#ff8a3d"/><path d="M150 72 C 144 84 145 92 150 96 C 155 92 156 84 150 72 Z" fill="#ffd28a"/></g>
-          <rect x="140" y="100" width="20" height="40" rx="4" fill="#f2e9d4"/>
-          <g class="sea-w1"><path d="M-300 160 q 37.5 -22 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 V 200 H -300 Z" fill="#2f8f8a"/></g>
-          <g class="sea-w2"><path d="M-300 176 q 37.5 -18 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 V 200 H -300 Z" fill="#25777a"/></g>
-        </svg>
-        <figcaption><p class="when">Stress qui dure</p><h3>La prière et la mer</h3><p>Je prends du recul : la prière pour me recentrer, la mer pour me vider la tête.</p></figcaption>
-      </figure>
-      <figure class="tool">
-        <svg viewBox="0 0 300 200" role="img" aria-label="Deux tuiles 2 fusionnent en une tuile 4, comme dans le jeu 2048">
-          <rect x="70" y="60" width="160" height="80" rx="8" fill="#25777a"/>
-          <g class="t-a"><rect x="76" y="66" width="68" height="68" rx="6" fill="#f2e9d4"/><text class="tile" x="110" y="100" fill="#1d5a5f" style="fill:#1d5a5f">2</text></g>
-          <g class="t-b"><rect x="156" y="66" width="68" height="68" rx="6" fill="#f2e9d4"/><text class="tile" x="190" y="100" style="fill:#1d5a5f">2</text></g>
-          <g class="t-c" style="transform-origin:150px 100px"><rect x="116" y="66" width="68" height="68" rx="6" fill="#ff8a3d"/><text class="tile" x="150" y="100" style="fill:#1d5a5f">4</text></g>
-        </svg>
-        <figcaption><p class="when">Stress qui dure</p><h3>Le jeu 2048</h3><p>Une tâche simple qui occupe l'esprit et fait retomber la tension.</p></figcaption>
-      </figure>
+    <div class="sp-text">
+      <p class="lab">Quand le stress est ponctuel</p>
+      <h2>La respiration</h2>
+      <p>Quand le stress arrive d'un coup, avant un oral ou devant une échéance, je ralentis : j'inspire par le nez, je souffle longuement. Quelques respirations me redonnent la main.</p>
+      <p class="small">Respire avec Milo : quand il se gonfle, inspire ; quand il se dégonfle, souffle.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ Réalisations ============ -->
-<section id="realisations" data-s="Réalisations" aria-label="Mes réalisations">
+<!-- ============ Stress qui dure : trois cartes ============ -->
+<section id="stress-l" data-s="Stress qui dure" data-mood="sea">
+  <div class="wrap">
+    <p class="lab">Quand le stress dure</p>
+    <h2>Prendre du recul</h2>
+    <p>Quand le stress s'installe, je change d'échelle. Trois façons de me poser.</p>
+    <div class="stack">
+      <article class="card3">
+        <div class="art">
+          <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Une lanterne allumée devant une étoile géométrique qui tourne lentement">
+            <defs><linearGradient id="nt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2f33"/><stop offset="1" stop-color="#0d1a1c"/></linearGradient>
+            <radialGradient id="lg"><stop offset="0" stop-color="#ffcf86" stop-opacity=".75"/><stop offset="1" stop-color="#ffcf86" stop-opacity="0"/></radialGradient></defs>
+            <rect width="600" height="520" fill="url(#nt)"/>
+            <g class="pr-star" fill="none" stroke="#e8c98e" stroke-opacity=".28" stroke-width="2"><rect x="180" y="140" width="240" height="240"/><rect x="180" y="140" width="240" height="240" transform="rotate(45 300 260)"/><rect x="120" y="80" width="360" height="360"/><rect x="120" y="80" width="360" height="360" transform="rotate(45 300 260)"/></g>
+            <g class="pr-star r" fill="none" stroke="#e8c98e" stroke-opacity=".16" stroke-width="2"><rect x="60" y="20" width="480" height="480"/><rect x="60" y="20" width="480" height="480" transform="rotate(45 300 260)"/><rect x="0" y="-40" width="600" height="600" transform="rotate(22.5 300 260)"/></g>
+            <circle class="glow" cx="300" cy="260" r="190" fill="url(#lg)"/>
+            <g transform="translate(300 260)">
+              <path d="M-14 -126 Q0 -158 14 -126" fill="none" stroke="#e8c98e" stroke-width="4"/>
+              <path d="M-46 -108 L46 -108 L30 -128 L-30 -128Z" fill="#8f5a2e"/>
+              <path d="M-42 -108 L-54 42 Q-54 62 -32 64 H32 Q54 62 54 42 L42 -108Z" fill="rgba(255,205,130,.2)" stroke="#e8c98e" stroke-width="3"/>
+              <path d="M-14 -108 L-18 64 M14 -108 L18 64" stroke="#e8c98e" stroke-opacity=".5" stroke-width="2"/>
+              <g class="flame"><path d="M0 -62 C-16 -34 -14 -14 0 -4 C14 -14 16 -34 0 -62Z" fill="#ff8a3d"/><path d="M0 -38 C-7 -24 -6 -14 0 -9 C6 -14 7 -24 0 -38Z" fill="#ffd28a"/></g>
+              <rect x="-60" y="64" width="120" height="14" rx="4" fill="#8f5a2e"/>
+            </g>
+            <circle class="mote" cx="230" cy="400" r="3" style="animation-delay:0s"/><circle class="mote" cx="270" cy="420" r="2.5" style="animation-delay:1s"/><circle class="mote" cx="310" cy="410" r="3" style="animation-delay:2s"/><circle class="mote" cx="350" cy="430" r="2" style="animation-delay:3s"/><circle class="mote" cx="390" cy="405" r="3" style="animation-delay:4s"/><circle class="mote" cx="250" cy="440" r="2" style="animation-delay:5s"/><circle class="mote" cx="330" cy="395" r="2.5" style="animation-delay:2.5s"/>
+          </svg>
+        </div>
+        <div class="txt"><p class="lab">Stress qui dure</p><h3>La prière</h3><p>Elle me recentre : quelques minutes pour remettre les choses à leur place.</p></div>
+      </article>
+      <article class="card3">
+        <div class="art"><canvas id="seaCv" aria-label="Des vagues calmes au coucher du soleil" role="img"></canvas></div>
+        <div class="txt"><p class="lab">Stress qui dure</p><h3>La mer</h3><p>Je vais voir l'horizon. Le bruit des vagues me vide la tête.</p></div>
+      </article>
+      <article class="card3">
+        <div class="art">
+          <div class="g-wrap">
+            <div class="g-top"><span>Score <b id="g2048score">0</b></span><button type="button" id="g2048new">Rejouer</button></div>
+            <div class="g2048" id="g2048" tabindex="0" role="application" aria-label="Jeu 2048 : utilise les flèches du clavier ou glisse sur la grille"></div>
+            <div class="g-pad"><button type="button" data-mv="left" aria-label="Gauche">←</button><button type="button" data-mv="up" aria-label="Haut">↑</button><button type="button" data-mv="down" aria-label="Bas">↓</button><button type="button" data-mv="right" aria-label="Droite">→</button></div>
+            <p class="g-msg" id="g2048msg" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="txt"><p class="lab">Stress qui dure</p><h3>Le jeu 2048</h3><p>Une tâche simple qui occupe l'esprit et fait retomber la tension. Essaie : flèches du clavier, ou glisse sur la grille.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Mes réalisations probantes ============ -->
+<section id="realisations" data-s="Réalisations" data-mood="night" aria-label="Mes réalisations probantes">
   <div class="hs-stick">
-    <div class="hs-head"><h2>Deux réalisations</h2></div>
+    <div class="hs-head"><h2>Mes réalisations probantes</h2></div>
     <div class="hs-track" id="track">
 
       <div class="c title"><h3>Un assistant IA pour l'équipe support</h3><p>Myriad, stage d'avril à septembre 2026. Projet de juin 2026, présenté sur place.</p><p>Fais défiler pour lire la suite.</p></div>
@@ -330,40 +400,64 @@
         <div class="nums"><div><b>42/45</b><span>départements (93,3 %) gagnent en précision</span></div><div><b>~14 %</b><span>réduction moyenne</span></div><div><b>−46,3 %</b><span>meilleure amélioration : Kanel</span></div><div><b>1,47</b><span>ratio moyen MSE direct / MSE Fay-Herriot</span></div></div>
         <p>Le jury m'attribue la meilleure note : <b>17/20</b>.</p></div>
       <div class="c"><h4>Compétences<small>Je suis capable de…</small></h4><ul><li><b>Oser</b> et prendre des risques.</li><li><b>Achever</b> des projets dans des délais serrés.</li><li><b>Rédiger</b> et mener une recherche scientifique.</li><li><b>Mobiliser</b> un bagage en SAE.</li></ul></div>
+
+      <div class="c title"><h3>Vacances citoyenne : un été utile pour les jeunes de Bargny</h3><p>REBAR, de septembre à décembre 2022. Cheffe de projet des navétanes culturelles.</p></div>
+      <div class="c"><h4>Circonstances<small>Quand, fonction, où ?</small></h4><p>De septembre à décembre 2022, je suis cheffe du projet « Vacances citoyenne », les navétanes culturelles du REBAR, à Bargny.</p></div>
+      <div class="c"><h4>Mission<small>L'enjeu</small></h4><p>Je pilote un programme éducatif et citoyen qui offre aux jeunes de Bargny une alternative constructive aux activités estivales à risque, à travers des compétitions de culture générale et des actions communautaires.</p></div>
+      <div class="c"><h4>Analyse<small>Le diagnostic</small></h4><ul><li>L'été, beaucoup de jeunes se tournent vers des activités à risque.</li><li>Il faut leur donner envie de participer à autre chose.</li><li>La charge de travail est lourde et les partenaires sont difficiles à trouver.</li></ul></div>
+      <div class="c"><h4>Actions<small>Je + verbe au présent</small></h4><ul><li>Je coordonne les équipes.</li><li>Je recherche des partenaires.</li><li>J'organise des compétitions de culture générale.</li><li>Je mets en place des activités de sensibilisation et de reboisement.</li></ul></div>
+      <div class="c"><h4>Résultats<small>Processus, équipe</small></h4>
+        <div class="nums"><div><b>Culture</b><span>des compétitions de culture générale</span></div><div><b>Arbres</b><span>des actions de reboisement</span></div><div><b>Parole</b><span>des jeunes qui s'expriment en public</span></div><div><b>Élus</b><span>des rencontres avec les autorités</span></div></div>
+        <p>Je contribue à l'éducation des jeunes, ce qui compte le plus pour moi.</p></div>
+      <div class="c"><h4>Compétences<small>Je suis capable de…</small></h4><ul><li><b>Piloter</b> un programme de bout en bout.</li><li><b>Coordonner</b> des équipes de bénévoles.</li><li><b>Rechercher</b> des partenaires.</li><li><b>Mobiliser</b> et sensibiliser des jeunes.</li></ul></div>
     </div>
     <div class="hs-prog" aria-hidden="true"><i id="hsbar"></i></div>
+    <svg class="hs-milo" id="hsMilo" viewBox="0 0 240 240" aria-hidden="true"><use href="#milo"/></svg>
   </div>
 </section>
 
 <!-- ============ Leadership ============ -->
-<section id="soft" data-s="Leadership">
-  <div class="wrap">
-    <h2>Ce que j'ai dirigé</h2>
-    <ul class="list">
-      <li><b>Présidente du REBAR</b>, le Rassemblement des élèves et étudiants de Bargny pour la réussite.</li>
-      <li><b>Cheffe du projet</b> « Navétanes culturelles et citoyennes de génie en herbe », au sein du REBAR.</li>
-      <li><b>Présidente</b> de la Commission des femmes de l'ENSAE de Dakar (CFED).</li>
-      <li><b>Présidente</b> du collectif « Ndajeem Ndimbaal ».</li>
-      <li><b>Coordinatrice</b> du comité Design de l'Amicale des élèves et stagiaires de l'ENSAE Dakar.</li>
-      <li><b>Trésorière générale</b> de l'amicale des Sénégalais de l'ENSAE (AMSEN) de Dakar.</li>
-    </ul>
+<section id="soft" data-s="Leadership" data-mood="dusk">
+  <div class="lead-grid">
+    <svg class="lead-milo" viewBox="0 0 300 420" role="img" aria-label="Milo, debout sur une estrade, fait un discours : un bras levé, un micro devant lui">
+        <circle class="lm-dot" cx="212" cy="46" r="6"/><circle class="lm-dot" cx="234" cy="36" r="8" style="animation-delay:.25s"/><circle class="lm-dot" cx="260" cy="26" r="10" style="animation-delay:.5s"/>
+        <ellipse cx="150" cy="404" rx="130" ry="12" fill="#000" opacity=".3"/>
+        <path d="M34 286 H266 L252 400 H48Z" fill="url(#wood)"/><rect x="26" y="272" width="248" height="18" rx="6" fill="#e6b27a"/>
+        <path d="M150 318 l8 17 18 2 -13 12 4 18 -17 -9 -17 9 4 -18 -13 -12 18 -2z" fill="#ffd28a" opacity=".85"/>
+        <g class="lm-body"><use href="#milo" x="40" y="52" width="220" height="220"/></g>
+        <g transform="translate(106 214)"><g class="lm-arm"><path d="M0 0 L-40 -66" stroke="#ff9a3c" stroke-width="26" stroke-linecap="round"/><circle cx="-42" cy="-70" r="17" fill="#ff9a3c"/><path d="M-56 -80 l7 9 M-47 -86 l4 11" stroke="#e57a1f" stroke-width="3" stroke-linecap="round"/></g></g>
+        <path d="M198 272 L186 190" stroke="#3b4a31" stroke-width="5" stroke-linecap="round"/><rect x="176" y="164" width="24" height="30" rx="11" fill="#232d1d"/><rect x="180" y="168" width="6" height="14" rx="3" fill="#8f8f80"/>
+        <path class="lm-wave" d="M214 150 Q238 172 214 194"/><path class="lm-wave" d="M214 150 Q238 172 214 194" style="animation-delay:.6s"/><path class="lm-wave" d="M214 150 Q238 172 214 194" style="animation-delay:1.2s"/>
+      </svg>
+    <div class="lead-text">
+      <h2>Leadership et engagement</h2>
+      <ul class="list roles">
+        <li><b>Présidente du REBAR</b>, le Rassemblement des élèves et étudiants de Bargny pour la réussite.</li>
+        <li><b>Cheffe du projet</b> « Navétanes culturelles et citoyennes de génie en herbe », au sein du REBAR.</li>
+        <li><b>Présidente</b> de la Commission des femmes de l'ENSAE de Dakar (CFED).</li>
+        <li><b>Présidente</b> du collectif « Ndajeem Ndimbaal ».</li>
+        <li><b>Coordinatrice</b> du comité Design de l'Amicale des élèves et stagiaires de l'ENSAE Dakar.</li>
+        <li><b>Trésorière générale</b> de l'amicale des Sénégalais de l'ENSAE (AMSEN) de Dakar.</li>
+      </ul>
+    </div>
+    <figure class="lead-photo" id="leadPhoto"><img src="assets/img/ensae.jpg" alt="Aïssatou Gueye en tailleur bleu marine, les bras croisés, avec l'écusson de l'ENSAE" loading="lazy"><figcaption>ENSAE Dakar</figcaption></figure>
   </div>
 </section>
 
 <!-- ============ Secteurs ============ -->
-<section id="secteurs" data-s="Secteurs">
+<section id="secteurs" data-s="Secteurs" data-mood="dusk">
   <div class="wrap">
     <h2>Les secteurs où je veux travailler</h2>
     <div class="sect">
-      <article><h3>Statistique publique et développement</h3><p>Mesurer pour orienter l'action publique : mon stage à l'ANSD m'a montré ce que des estimations fines changent pour un territoire.</p></article>
-      <article><h3>Télécoms et finance digitale</h3><p>Des données massives et des décisions rapides. Deux personnes de mon réseau y travaillent, à la Sonatel et chez Mixx by YAS.</p></article>
-      <article><h3>IA appliquée aux opérations</h3><p>Des assistants et des tableaux de bord qui font gagner du temps aux équipes : c'est ce que j'ai construit chez Myriad.</p></article>
+      <article><h3>Finance quantitative</h3><p>Ce qui me plaît, c'est de transformer des chiffres en décisions : modéliser, estimer, prévoir. Je veux évoluer là où la rigueur statistique pèse directement sur le risque et sur la rentabilité.</p></article>
+      <article><h3>Fintech</h3><p>La fintech rapproche la donnée du quotidien des gens : paiements, crédit, inclusion financière. J'y vois un terrain où l'on construit vite et où l'on mesure l'effet de ce que l'on fait.</p></article>
+      <article><h3>Finance islamique</h3><p>Elle m'intéresse pour ses principes, comme le partage des risques et le lien avec l'économie réelle. J'aimerais comprendre comment ils se traduisent en produits que l'on peut mesurer.</p></article>
     </div>
   </div>
 </section>
 
 <!-- ============ Réseau ============ -->
-<section id="reseau" data-s="Réseau">
+<section id="reseau" data-s="Réseau" data-mood="dusk">
   <div class="wrap">
     <h2>Mon réseau</h2>
     <p>Des personnes et des communautés qui m'ont orientée, conseillée ou ouvert des portes. Les coordonnées sont volontairement masquées.</p>
@@ -378,10 +472,10 @@
       <thead><tr><th>Contact</th><th>Lien avec moi</th><th>Organisation et rôle</th><th>Ce qu'il ou elle m'apporte</th><th>Coordonnées</th></tr></thead>
       <tbody>
         <tr data-c="famille entreprise"><td>Ibrahima Gueye</td><td data-l="Lien">Cousin</td><td data-l="Organisation">Responsable à la Sonatel</td><td data-l="Apport">Une porte d'entrée dans les télécoms. Je lui ai remis mon CV en août, sans suite pour l'instant : je prévois de le relancer.</td><td data-l="Coordonnées" class="mask">+221 77 4•• •• ••</td></tr>
-        <tr data-c="ensae"><td>Réseau des alumni de l'ENSAE</td><td data-l="Lien">Communauté</td><td data-l="Organisation">Anciens de l'ENSAE Dakar</td><td data-l="Apport">Mises en relation et conseils de parcours : c'est par lui que j'ai rencontré Fatou et Doudou Malick Faye.</td><td data-l="Coordonnées" class="mask">annuaire réservé aux membres</td></tr>
+        <tr data-c="ensae"><td>Réseau des alumni de l'ENSAE</td><td data-l="Lien">Communauté</td><td data-l="Organisation">Anciens de l'ENSAE Dakar</td><td data-l="Apport">Mises en relation et conseils de parcours : c'est par lui que j'ai rencontré Fatou Diop et Doudou Malick Faye.</td><td data-l="Coordonnées" class="mask">annuaire réservé aux membres</td></tr>
         <tr data-c="ensae ansd"><td>Réseau des analystes statisticiens du RESA</td><td data-l="Lien">Communauté</td><td data-l="Organisation">Analystes statisticiens</td><td data-l="Apport">Échanges entre pairs, retours d'expérience et veille sur le métier.</td><td data-l="Coordonnées" class="mask">groupe privé</td></tr>
-        <tr data-c="entreprise"><td>Mon ancien manager</td><td data-l="Lien">Ancien manager</td><td data-l="Organisation">Data Engineer, Myriad</td><td data-l="Apport">Regard technique sur mes projets, et une référence professionnelle.</td><td data-l="Coordonnées" class="mask">+33 6 2• •• •• ••</td></tr>
-        <tr data-c="ensae ansd"><td>Fatou</td><td data-l="Lien">Alumni de l'ENSAE</td><td data-l="Organisation">Statisticienne, ANSD</td><td data-l="Apport">M'a mise en relation avec M. Kamara pour mon stage sur la pauvreté multidimensionnelle.</td><td data-l="Coordonnées" class="mask">+221 76 3•• •• ••</td></tr>
+        <tr data-c="entreprise"><td>Diariétou Sylla</td><td data-l="Lien">Ancien manager</td><td data-l="Organisation">Data Engineer, Myriad</td><td data-l="Apport">Regard technique sur mes projets, et une référence professionnelle.</td><td data-l="Coordonnées" class="mask">+33 6 2• •• •• ••</td></tr>
+        <tr data-c="ensae ansd"><td>Fatou Diop</td><td data-l="Lien">Alumni de l'ENSAE</td><td data-l="Organisation">Statisticienne, ANSD</td><td data-l="Apport">M'a mise en relation avec M. Kamara pour mon sujet de mémoire, qui touchait aussi son domaine d'expertise.</td><td data-l="Coordonnées" class="mask">+221 76 3•• •• ••</td></tr>
         <tr data-c="ansd"><td>M. Kamara</td><td data-l="Lien">Expert de mon sujet de stage</td><td data-l="Organisation">Chef de division, direction des statistiques sociales, ANSD</td><td data-l="Apport">Expert de la pauvreté multidimensionnelle. M'a orientée vers le Dr Balde.</td><td data-l="Coordonnées" class="mask">+221 77 6•• •• ••</td></tr>
         <tr data-c="ensae"><td>Dr Balde</td><td data-l="Lien">Enseignant</td><td data-l="Organisation">Directeur des études et des stages, ENSAE ; spécialiste des petits domaines</td><td data-l="Apport">Une expertise de référence sur l'estimation sur petits domaines, au cœur de mon projet.</td><td data-l="Coordonnées" class="mask">+221 78 1•• •• ••</td></tr>
         <tr data-c="ensae"><td>Doudou Malick Faye</td><td data-l="Lien">Alumni de l'ENSAE</td><td data-l="Organisation">Data scientist</td><td data-l="Apport">Pour mon mémoire de 3e année, m'a orientée vers Mamadou Diop.</td><td data-l="Coordonnées" class="mask">+221 70 5•• •• ••</td></tr>
@@ -389,38 +483,29 @@
       </tbody>
     </table>
     <div class="chains">
-      <div class="chain"><h3>Pour mon stage à l'ANSD</h3><ol><li><b>Fatou</b>alumni, statisticienne</li><li><b>M. Kamara</b>expert de la pauvreté multidimensionnelle</li><li><b>Dr Balde</b>spécialiste des petits domaines</li></ol></div>
+      <div class="chain"><h3>Pour mon stage à l'ANSD</h3><ol><li><b>Fatou Diop</b>alumni, statisticienne</li><li><b>M. Kamara</b>expert de la pauvreté multidimensionnelle</li><li><b>Dr Balde</b>spécialiste des petits domaines</li></ol></div>
       <div class="chain"><h3>Pour mon mémoire de 3e année</h3><ol><li><b>Doudou Malick Faye</b>alumni, data scientist</li><li><b>Mamadou Diop</b>Mixx by YAS</li></ol></div>
     </div>
   </div>
 </section>
 
-<!-- ============ Objectifs 2027 : la route ============ -->
-<section class="scene s-road" id="objectifs" data-scene="road" data-s="Objectifs 2027" style="--h:260vh;--hm:230vh">
+<!-- ============ Objectifs : la frise ============ -->
+<section class="scene s-tl" id="objectifs" data-scene="tl" data-s="Objectifs" data-mood="dusk" style="--h:420vh;--hm:auto">
   <div class="stick">
-    <h2>Mes objectifs pour 2027</h2>
-    <svg class="road-svg" id="roadsvg" viewBox="0 0 1600 300" aria-hidden="true">
-      <path id="road" d="M 60 220 C 300 40, 520 40, 760 150 S 1200 260, 1540 90" fill="none" stroke="#f2e9d4" stroke-opacity=".25" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 22"/>
-      <path id="road2" d="M 60 220 C 300 40, 520 40, 760 150 S 1200 260, 1540 90" fill="none" stroke="#ff8a3d" stroke-width="10" stroke-linecap="round"/>
-      <g id="flags"></g>
-      <g id="roadMilo"><use href="#milo" x="-45" y="-86" width="90" height="90"/></g>
-    </svg>
-    <div class="goals" id="goals">
-      <div class="goal"><b>Mai 2027</b><h3>Un stage de 3 mois</h3><p>Trouver un stage en fin de M1.</p></div>
-      <div class="goal"><b>Juin 2027</b><h3>Un anglais plus solide</h3><p>Passer un test de niveau, avec B2 pour cible.</p></div>
-      <div class="goal"><b>Septembre 2027</b><h3>Une alternance</h3><p>Trouver une alternance pour le M2.</p></div>
-      <div class="goal"><b>Décembre 2027</b><h3>Data engineering</h3><p>Monter en compétences, avec un pipeline ETL complet à montrer.</p></div>
-    </div>
-    <div class="veil" style="background:var(--moss-deep)"></div>
+    <div class="tl-head"><h2>Mes objectifs pour 2027</h2><p>Quatre objectifs, un par un.</p></div>
+    <div class="tl-count" id="tlCount" aria-hidden="true">0 / 4</div>
+    <div class="tl-wrap"><div class="tl-track" id="tlTrack"></div></div>
+    <svg class="tl-milo" viewBox="0 0 240 240" aria-hidden="true"><use href="#milo"/></svg>
   </div>
 </section>
 
 <!-- ============ Contact ============ -->
-<section id="contact" data-s="Contact">
+<section id="contact" data-s="Contact" data-mood="moss">
   <div class="wrap">
-    <h2>Écrivons-nous</h2>
+    <h2>Contact</h2>
     <p>Pour un stage, une alternance ou simplement échanger sur mes projets.</p>
     <div class="ct">
+      <div><span class="small">Adresse</span><b>13100 Aix-en-Provence</b><span class="small">Ville de résidence actuelle</span></div>
       <div><span class="small">E-mail</span><b>aissatoug15@gmail.com</b><button class="btn ghost" data-copy="aissatoug15@gmail.com">Copier l'adresse</button></div>
       <div><span class="small">LinkedIn</span><b>Aïssatou GUEYE</b><button class="btn ghost" data-copy="https://www.linkedin.com/in/a%C3%AFssatou-gueye-211850207/">Copier le lien</button></div>
       <div><span class="small">GitHub</span><b>Aissatou150</b><button class="btn ghost" data-copy="Aissatou150">Copier l'identifiant</button></div>
@@ -429,28 +514,51 @@
 </section>
 
 <!-- ============ Grille d'évaluation ============ -->
-<section id="evaluation" data-s="Évaluation">
+<section id="evaluation" data-s="Évaluation" data-mood="night">
   <div class="wrap">
     <h2>Grille d'évaluation</h2>
     <p>Les neuf éléments demandés dans le cours, avec la réponse en une ligne et le lien pour la retrouver.</p>
     <div class="evalgrid">
       <a class="evalrow" href="#cv"><span class="n">1</span><span class="t">CV</span><span class="a">Un CV d'une page, du plus récent au plus ancien, qui annonce ma recherche de stage de 3 mois à partir de mai 2027.</span><span class="go">Voir</span></a>
       <a class="evalrow" href="#linkedin"><span class="n">2</span><span class="t">Page LinkedIn</span><span class="a">Mon profil, présenté en captures que l'on parcourt en défilant.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#force"><span class="n">3</span><span class="t">Force principale</span><span class="a">La persuasion, exercée intentionnellement. La preuve : les équipes que j'ai dirigées, du REBAR à la CFED.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#competences"><span class="n">4</span><span class="t">Compétences et atouts</span><span class="a">Données, visualisation, ML et engineering, collecte ; rigueur statistique, restitution claire, travail d'équipe.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#secteurs"><span class="n">5</span><span class="t">Secteurs visés</span><span class="a">Statistique publique et développement, télécoms et finance digitale, IA appliquée aux opérations.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#axe"><span class="n">6</span><span class="t">Axe d'amélioration</span><span class="a">Organisation et sens des priorités : une revue hebdomadaire des tâches, classées par urgence et importance.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#reseau"><span class="n">7</span><span class="t">Tableau de réseau</span><span class="a">Neuf contacts et communautés : famille, alumni de l'ENSAE, ANSD, entreprises, avec ce que chacun m'apporte.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#objectifs"><span class="n">8</span><span class="t">Objectifs 2027</span><span class="a">Un stage en mai, un test d'anglais en juin, une alternance en septembre, le data engineering d'ici décembre.</span><span class="go">Voir</span></a>
-      <a class="evalrow" href="#stress"><span class="n">9</span><span class="t">Outil contre le mauvais stress</span><span class="a">La respiration pour un stress ponctuel ; la prière, la mer et le jeu 2048 pour un stress qui dure.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#force"><span class="n">3</span><span class="t">Force principale</span><span class="a">La persuasion : je sais bien argumenter et je parviens souvent à convaincre.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#competences"><span class="n">4</span><span class="t">Compétences et atouts</span><span class="a">Données, visualisation, ML et engineering, collecte : plus de vingt outils, avec leurs logos.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#secteurs"><span class="n">5</span><span class="t">Secteurs visés</span><span class="a">Finance quantitative, fintech et finance islamique.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#axe"><span class="n">6</span><span class="t">Axe d'amélioration</span><span class="a">Organisation et sens des priorités : une règle chaque lundi, appliquée à ma semaine du 23 au 27 novembre.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#reseau"><span class="n">7</span><span class="t">Tableau de réseau</span><span class="a">Neuf contacts et communautés, avec ce que chacun m'apporte, et deux chaînes de recommandation.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#objectifs"><span class="n">8</span><span class="t">Objectifs 2027</span><span class="a">Un stage en fin de M1, une alternance, des compétences en data engineering et un meilleur anglais.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#stress-p"><span class="n">9</span><span class="t">Outil contre le mauvais stress</span><span class="a">La respiration pour un stress ponctuel ; la prière, la mer et le jeu 2048 pour un stress qui dure.</span><span class="go">Voir</span></a>
     </div>
+  </div>
+</section>
+
+<!-- ============ Au revoir : Milo géant, appuyé sur le rebord ============ -->
+<section class="scene s-bye" id="adieu" data-scene="bye" style="--h:230vh;--hm:200vh" aria-label="Au revoir">
+  <div class="stick">
+    <svg class="bye-svg" id="byeSvg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Milo, en très grand, s'appuie sur le rebord de l'écran : on voit le haut de sa tête, ses yeux et son nez, une patte posée sur le rebord et l'autre qui dit au revoir.">
+      <defs><clipPath id="byeclip"><rect x="0" y="0" width="775" height="455"/></clipPath>
+      <filter id="byesh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#000" flood-opacity=".35"/></filter></defs>
+      <g filter="url(#byesh)">
+        <g clip-path="url(#byeclip)"><use href="#milo" x="50" y="0" width="900" height="900"/></g>
+        <g transform="translate(205 456)"><g class="by-wave"><path d="M0 0 L-4 -150" stroke="#ff9a3c" stroke-width="72" stroke-linecap="round"/><circle cx="-6" cy="-178" r="58" fill="#ff9a3c"/><ellipse cx="-6" cy="-166" rx="30" ry="25" fill="#ff8fa3"/><circle cx="-38" cy="-208" r="11" fill="#ff8fa3"/><circle cx="-6" cy="-220" r="11" fill="#ff8fa3"/><circle cx="26" cy="-208" r="11" fill="#ff8fa3"/></g></g>
+        <g class="by-rest"><ellipse cx="800" cy="452" rx="84" ry="40" fill="#ff9a3c"/><path d="M752 428 q-6 22 4 44 M800 418 q-4 26 2 54 M846 428 q8 22 -2 44" fill="none" stroke="#e57a1f" stroke-width="5" stroke-linecap="round"/></g>
+      </g>
+      <rect x="-40" y="455" width="1080" height="14" rx="7" fill="#f2e9d4"/>
+      <g class="by-bubble" id="byeBubble"><path d="M790 250 h170 q18 0 18 18 v44 q0 18 -18 18 h-96 l-30 30 l6 -30 h-48 q-18 0 -18 -18 v-44 q0 -18 18 -18z" fill="#f2e9d4"/><text x="870" y="305" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="30" fill="#232d1d">À bientôt !</text></g>
+    </svg>
   </div>
 </section>
 
 </main>
 <footer>Aïssatou Gueye. Portfolio du cours de développement professionnel, 2026.</footer>
 
-<script src="js/main.js"></script>
-<script src="js/scenes.js"></script>
+<!-- Curseur : une pelote de laine qui suit la souris (ordinateur seulement) -->
+<svg id="cur" aria-hidden="true"><path id="curThread" fill="none" stroke="#ff8fa3" stroke-width="3" stroke-linecap="round" opacity=".85"/><g id="curBall"><g id="curRot"><circle r="15" fill="#ff8fa3" stroke="#e0607a" stroke-width="1.5"/><path d="M-13 -5 Q0 -13 13 -5 M-14 2 Q0 -5 14 2 M-10 9 Q0 3 10 9 M-5 -13 Q-13 0 -5 13 M5 -13 Q13 0 5 13" fill="none" stroke="#e0607a" stroke-width="1.6" stroke-linecap="round"/><circle cx="-5" cy="-6" r="4" fill="#fff" opacity=".28"/></g></g></svg>
+
+<script src="js/main.js?v=16"></script>
+<script src="js/bg.js?v=16"></script>
+<script src="js/skills.js?v=16"></script>
+<script src="js/scenes.js?v=16"></script>
+<script src="js/stress.js?v=16"></script>
 </body>
 </html>

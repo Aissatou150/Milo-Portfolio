@@ -13,26 +13,46 @@
   const rng = seed => { let s = seed; return () => (s = s * 16807 % 2147483647) / 2147483647; };
   const S = {};
 
-  /* ---------- Valeurs : éléments dessinés par le code ---------- */
-  (function values() {
+  /* ---------- Valeurs : quatre chapitres en plein écran ---------- */
+  (function drawnPieces() {
     const g = $('#dots-grid');
     if (g) {
       const og = mk('g', { 'clip-path': 'url(#lensclip)' }, g.parentNode);
-      for (let r = 0; r < 3; r++) for (let c = 0; c < 5; c++) {
-        const a = { cx: 36 + c * 37, cy: 38 + r * 42, r: 7 };
+      for (let r = 0; r < 5; r++) for (let c = 0; c < 8; c++) {
+        const a = { cx: 70 + c * 66, cy: 70 + r * 66, r: 11 };
         mk('circle', { ...a, class: 'v-dot' }, g); mk('circle', { ...a, class: 'v-dot-on' }, og);
       }
     }
     const jg = $('#join-g'), R = rng(7);
     if (jg) {
-      for (let i = 0; i < 9; i++) {
-        const a = i / 9 * Math.PI * 2;
-        const c = mk('circle', { cx: (120 + Math.cos(a) * 56).toFixed(1), cy: (80 + Math.sin(a) * 56).toFixed(1), r: 9, class: 'v-join' }, jg);
-        c.style.setProperty('--x', ((R() - .5) * 160).toFixed(0) + 'px'); c.style.setProperty('--y', ((R() - .5) * 110).toFixed(0) + 'px');
+      for (let i = 0; i < 14; i++) {
+        const a = i / 14 * Math.PI * 2;
+        const c = mk('circle', { cx: (300 + Math.cos(a) * 130).toFixed(1), cy: (210 + Math.sin(a) * 130).toFixed(1), r: 15, class: 'v-join' }, jg);
+        c.style.setProperty('--x', ((R() - .5) * 420).toFixed(0) + 'px'); c.style.setProperty('--y', ((R() - .5) * 300).toFixed(0) + 'px');
       }
-      mk('circle', { cx: 120, cy: 80, r: 12, fill: '#f2e9d4' }, jg);
+      mk('circle', { cx: 300, cy: 210, r: 34, fill: '#f2e9d4' }, jg);
     }
   })();
+  S.vals = {
+    init(el) {
+      this.ps = $$('.vp', el); this.dots = $$('.vnav button', el); this.bar = $('#vbar');
+      this.dots.forEach((b, i) => b.addEventListener('click', () => scrollTo({ top: el.getBoundingClientRect().top + scrollY + (i + .5) / this.ps.length * (el.offsetHeight - innerHeight) })));
+    },
+    update(p) {
+      const n = this.ps.length; let act = 0;
+      this.ps.forEach((el, i) => {
+        const l = p * n - i; let o, y;
+        if (l < 0) { o = i === 0 ? 1 : 0; y = i === 0 ? 0 : 80; }
+        else if (l < .14 && i > 0) { const k = l / .14; o = k; y = lerp(80, 0, ease(k)); }
+        else if (l > 1) { o = 0; y = -80; }
+        else if (l > .86 && i < n - 1) { const k = (l - .86) / .14; o = 1 - k; y = lerp(0, -80, ease(k)); }
+        else { o = 1; y = 0; }
+        el.style.opacity = o.toFixed(3); el.style.transform = `translateY(${y.toFixed(1)}px)`; el.style.setProperty('--l', clamp(l).toFixed(3));
+        el.style.visibility = o > 0 ? 'visible' : 'hidden'; el.classList.toggle('on', o > .5); if (o > .5) act = i;
+      });
+      this.dots.forEach((d, i) => d.classList.toggle('on', i === act)); this.bar.style.width = (p * 100) + '%';
+    }
+  };
 
   /* ---------- Passage 1 : montée de nuages ---------- */
   function cloudBand(g, color, y0, seed, big) {
@@ -103,21 +123,31 @@
     }
   };
 
-  /* ---------- Ma force : la foule se laisse convaincre ---------- */
+  /* ---------- Ma force : Milo convainc la foule ---------- */
   S.force = {
     init() {
-      const g = $('#crowd'), R = rng(5); this.pp = [];
-      for (let r = 0; r < 5; r++) for (let c = 0; c < 8; c++) {
-        const x = 392 + c * 38, y = 392 + r * 36, gg = mk('g', { class: 'pp' }, g);
-        mk('circle', { cx: x, cy: y - 12, r: 8 }, gg); mk('rect', { x: x - 10, y: y - 3, width: 20, height: 22, rx: 9 }, gg); this.pp.push(gg);
+      const g = $('#crowd'), R = rng(5); this.f = [];
+      const rows = 5, cols = 6;
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+        const sc = .8 + r * .08, x = 430 + c * 58 + (r % 2) * 14, y = 322 + r * 56;
+        const f = mk('g', { class: 'face', transform: `translate(${x} ${y}) scale(${sc})` }, g);
+        const inner = mk('g', { class: 'fi' }, f); inner.style.animationDelay = (-R() * 3).toFixed(2) + 's';
+        mk('path', { class: 'fb', d: 'M-19 40 Q-19 16 0 16 Q19 16 19 40 Z' }, inner);
+        mk('circle', { class: 'fb', r: 19 }, inner);
+        mk('circle', { cx: -7, cy: -3, r: 2.6, fill: '#1d1a33' }, inner); mk('circle', { cx: 7, cy: -3, r: 2.6, fill: '#1d1a33' }, inner);
+        mk('path', { class: 'm-no', d: 'M-7 10 q7 -6 14 0', fill: 'none', stroke: '#1d1a33', 'stroke-width': 2.4, 'stroke-linecap': 'round' }, inner);
+        mk('path', { class: 'm-yes', d: 'M-8 5 q8 10 16 0', fill: 'none', stroke: '#1d1a33', 'stroke-width': 2.4, 'stroke-linecap': 'round' }, inner);
+        mk('path', { class: 'sp', d: 'M0 -34 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z', fill: '#ffd28a' }, f);
+        this.f.push(f);
       }
-      this.rank = this.pp.map((_, i) => i).sort(() => R() - .5).map((v, i) => [v, i]).reduce((a, [v, i]) => (a[v] = i, a), []);
-      this.n = $('#convN'); this.c = -1;
+      this.rank = this.f.map((_, i) => i).sort(() => R() - .5).map((v, i) => [v, i]).reduce((a, [v, i]) => (a[v] = i, a), []);
+      this.b = $$('#bubble .bt'); this.c = -1; this.bi = -1;
     },
     update(p) {
-      const c = Math.floor(clamp((p - .1) / .72) * 40.999);
-      if (c === this.c) return; this.c = c;
-      this.pp.forEach((e, i) => e.classList.toggle('on', this.rank[i] < c)); this.n.textContent = c;
+      const n = this.f.length, c = Math.floor(clamp((p - .08) / .74) * (n + .999));
+      if (c !== this.c) { this.c = c; this.f.forEach((e, i) => e.classList.toggle('on', this.rank[i] < c)); }
+      const bi = p < .3 ? 0 : p < .62 ? 1 : 2;
+      if (bi !== this.bi) { this.bi = bi; this.b.forEach((t, i) => t.classList.toggle('on', i === bi)); }
     }
   };
 
@@ -141,28 +171,40 @@
     }
   };
 
-  /* ---------- Mon axe : les tâches se rangent ---------- */
+  /* ---------- Mon axe : la matrice, puis l'agenda de la semaine ---------- */
   S.axe = {
-    tasks: [['Livrer la première version de l\'assistant', 0], ['Rédiger le rapport de projet', 1], ['Apprendre la méthode de Fay-Herriot', 1], ['Répondre aux e-mails', 2], ['Préparer la soutenance', 0], ['Réviser l\'anglais', 1], ['Faire défiler les réseaux', 3], ['Refaire une figure déjà validée', 3]],
+    tasks: [['Rendre le projet de développement', 0], ['Préparer le Career Day de vendredi', 0], ['Réviser pour les examens à venir', 1], ['Reprendre le cours de macroéconomie', 1], ['Faire les exercices du TD de mercredi', 1], ['Répondre aux messages de groupe', 2], ['Faire défiler les réseaux', 3], ['Retoucher une figure déjà validée', 3]],
     init() {
-      this.board = $('#board'); const R = rng(21); this.items = [];
+      this.board = $('#board'); this.ag = $('#agenda'); const R = rng(21); this.items = [];
       const slot = [0, 0, 0, 0];
       this.tasks.forEach(([txt, q], i) => {
         const d = document.createElement('div'); d.className = 'task q' + q; d.textContent = txt; this.board.append(d);
         this.items.push({ d, q, slot: slot[q]++, sx: .12 + R() * .4, sy: .18 + R() * .5, rot: (R() - .5) * 30 });
       });
       this.qs = $$('.q', this.board);
+      /* agenda de la semaine du 23 au 27 novembre */
+      const days = ['Lun 23', 'Mar 24', 'Mer 25', 'Jeu 26', 'Ven 27'], cols = $('.ag-body', this.ag), hours = $('.ag-hours', this.ag);
+      $('.ag-head', this.ag).insertAdjacentHTML('beforeend', days.map(d => `<b>${d}</b>`).join(''));
+      for (let h = 8; h <= 18; h += 2) hours.insertAdjacentHTML('beforeend', `<span style="top:${(h - 8) / 10 * 100}%">${h} h</span>`);
+      const B = [[0, 9.5, 12.5, 'Macroéconomie (CM)', 'f'], [0, 13.5, 16.5, 'Macroéconomie (CM)', 'f'], [2, 16.5, 18.5, 'TD de macroéconomie', 'f'], [4, 8, 17, 'Career Day', 'f'],
+        [1, 9, 12, 'Projet de développement', 'm'], [1, 14, 17, 'Révisions', 'm'], [2, 9, 12, 'Préparer le Career Day', 'm'], [3, 9, 12, 'Projet de développement', 'm'], [3, 14, 17, 'Révisions', 'm']];
+      this.blocks = [];
+      days.forEach((_, i) => { const c = document.createElement('div'); c.className = 'ag-col'; cols.append(c); B.filter(b => b[0] === i).forEach(b => { const e = document.createElement('div'); e.className = 'blk ' + b[4]; e.style.top = (b[1] - 8) / 10 * 100 + '%'; e.style.height = (b[2] - b[1]) / 10 * 100 + '%'; e.textContent = b[3]; c.append(e); if (b[4] === 'm') this.blocks.push(e); }); });
     },
     update(p) {
-      const W = this.board.clientWidth, fs = Math.max(10, W * .027), sh = fs * 2.9, lh = fs * 2.6;
+      const W = this.board.clientWidth, fs = Math.max(12, W * .031), sh = fs * 2.9, lh = fs * 2.6;
       this.items.forEach((it, i) => {
-        const t = ease(clamp((p - .1 - i * .045) / .4));
+        const t = ease(clamp((p - .06 - i * .04) / .36));
         const fx = (it.q % 2) * W / 2 + W * .03, fy = Math.floor(it.q / 2) * W / 2 + lh + it.slot * (sh + 6);
         it.d.style.fontSize = fs + 'px'; it.d.style.minHeight = sh + 'px';
         it.d.style.transform = `translate(${lerp(it.sx * W, fx, t).toFixed(1)}px,${lerp(it.sy * W, fy, t).toFixed(1)}px) rotate(${lerp(it.rot, 0, t).toFixed(1)}deg)`;
         it.d.classList.toggle('s', t > .97);
       });
-      this.qs.forEach(q => { q.style.opacity = clamp((p - .5) / .2); q.style.fontSize = fs + 'px'; });
+      this.qs.forEach(q => { q.style.opacity = clamp((p - .4) / .1); q.style.fontSize = fs + 'px'; });
+      const bo = 1 - clamp((p - .5) / .1), ao = clamp((p - .55) / .1);
+      this.board.style.opacity = bo; this.board.style.visibility = bo > 0 ? 'visible' : 'hidden'; this.board.style.pointerEvents = 'none';
+      this.ag.style.opacity = ao; this.ag.style.visibility = ao > 0 ? 'visible' : 'hidden'; this.ag.style.transform = `translateY(${lerp(30, 0, ao)}px)`;
+      this.blocks.forEach((b, i) => { const t = clamp((p - .66 - i * .035) / .1); b.style.opacity = t; b.style.transform = `scaleY(${lerp(.2, 1, ease(t))})`; });
     }
   };
 
@@ -206,15 +248,17 @@
     n: 0,
     init(el) { this.strip = $('#liStrip'); this.frame = $('#liFrame'); this.title = $('#liTitle'); this.count = $('#liCount'); this.load(el); },
     async load(el) {
-      const imgs = [];
-      for (let i = 1; i <= 12; i++) {
+      const imgs = [], patterns = ['{i}.jpeg', '{i}.jpg', '{i}.png', '{i}.webp', 'profil-{i}.jpeg', 'profil-{i}.jpg', 'profil-{i}.png', 'profil-{i}.webp'];
+      let known = null;                       // motif de nom trouvé : on le réutilise pour les captures suivantes
+      const tryLoad = src => new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
+      for (let i = 1; i <= 14; i++) {
         let ok = null;
-        for (const ext of ['png', 'jpg', 'webp']) { ok = await new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = `assets/linkedin/profil-${i}.${ext}`; }); if (ok) break; }
+        for (const p of (known ? [known] : patterns)) { ok = await tryLoad('assets/linkedin/' + p.replace('{i}', i)); if (ok) { known = p; break; } }
         if (!ok) break; imgs.push(ok);
       }
       if (imgs.length) { imgs.forEach((im, i) => { im.alt = `Capture ${i + 1} du profil LinkedIn d'Aïssatou Gueye`; this.strip.append(im); }); this.n = imgs.length; }
       else {
-        for (let i = 1; i <= 4; i++) this.strip.insertAdjacentHTML('beforeend', `<div class="li-ph"><span class="no">${i}</span><div class="ban"></div><div class="av"></div><h4>Aïssatou Gueye</h4><p>Data Analyst et statisticienne</p><p>Marseille · ENSAE Dakar · Aix-Marseille Université</p><div class="sk"></div><div class="sk s"></div><div class="sk"></div></div>`);
+        for (let i = 1; i <= 4; i++) this.strip.insertAdjacentHTML('beforeend', `<div class="li-ph"><span class="no">${i}</span><div class="ban"></div><div class="av"></div><h4>Aïssatou Gueye</h4><p>Data Analyst et statisticienne</p><div class="sk2"></div><div class="sk2" style="width:55%"></div></div>`);
         this.n = 4;
       }
       this.resize(el);
@@ -234,23 +278,44 @@
     }
   };
 
-  /* ---------- Objectifs 2027 : la route ---------- */
-  S.road = {
-    init() {
-      this.path = $('#road'); this.L = this.path.getTotalLength(); this.r2 = $('#road2'); this.r2.style.strokeDasharray = this.L; this.milo = $('#roadMilo'); this.goals = $$('.goal');
-      this.ts = [.12, .38, .66, .93]; this.flags = this.ts.map(t => { const pt = this.path.getPointAtLength(this.L * t), g = mk('g', {}, $('#flags')); mk('line', { x1: 0, y1: 0, x2: 0, y2: -78, stroke: '#f2e9d4', 'stroke-width': 5 }, g); mk('path', { d: 'M0 -78 L56 -64 L0 -50 Z', fill: '#ff8a3d' }, g); return { g, x: pt.x, y: pt.y }; });
+  /* ---------- Objectifs : une longue frise de 32 étapes ---------- */
+  S.tl = {
+    M: [['Stage', 'Trouver un stage en fin de M1', 'Un stage de 3 mois à partir de mai 2027, dans un métier de la donnée, pour appliquer ce que j\'apprends en économétrie et en statistique et prolonger mes expériences à l\'ANSD et chez Myriad.'],
+      ['Alternance', 'Trouver une alternance', 'Une alternance pour la suite de mon master : alterner les cours et une mission réelle, et gagner en autonomie dans un environnement professionnel.'],
+      ['Compétence', 'Monter en compétences en data engineering', 'Mieux maîtriser la construction de pipelines de données (ETL, API, CI/CD) pour livrer des données fiables à celles et ceux qui les analysent.'],
+      ['Langue', 'Améliorer mon anglais', 'Passer d\'un niveau intermédiaire à un niveau professionnel, pour lire, rédiger et présenter en anglais dans un environnement international.']],
+    init(el) {
+      this.track = $('#tlTrack');
+      this.track.innerHTML = this.M.map(([tag, t, d], i) => `<div class="ms ${i % 2 ? 'dn' : 'up'}"><i class="dot"></i><div class="body"><span class="d">${tag}</span><h3>${t}</h3><p>${d}</p></div></div>`).join('');
+      this.items = $$('.ms', el); this.cnt = $('#tlCount'); this.resize(el);
+    },    narrow() { return innerWidth <= 800 || reduce; },
+    resize(el) {
+      if (this.narrow()) { el.style.height = ''; return; }
+      this.max = this.track.scrollWidth - innerWidth * .55; el.style.height = (this.max + innerHeight * 1.2) + 'px';
     },
     update(p) {
-      this.r2.style.strokeDashoffset = this.L * (1 - p);
-      const pt = this.path.getPointAtLength(this.L * p); this.milo.setAttribute('transform', `translate(${pt.x} ${pt.y + Math.sin(p * 90) * 4})`);
-      this.flags.forEach((f, i) => { const s = clamp((p - this.ts[i] + .05) * 18); f.g.setAttribute('transform', `translate(${f.x} ${f.y}) scale(${s})`); this.goals[i].classList.toggle('on', p >= this.ts[i] - .04); });
+      if (this.narrow()) { this.items.forEach(i => i.classList.add('on')); return; }
+      const tx = -p * this.max; this.track.style.transform = `translateX(${tx}px)`;
+      const mx = innerWidth * .3; let n = 0;
+      this.items.forEach(it => { const c = it.offsetLeft + it.offsetWidth / 2 + tx, on = c < mx + 60; it.classList.toggle('on', on); if (on) n++; });
+      this.cnt.textContent = n + ' / ' + this.items.length;
+    }
+  };
+
+  /* ---------- Au revoir : Milo géant qui s'élève du bas de l'écran et salue ---------- */
+  S.bye = {
+    init() { this.svg = $('#byeSvg'); this.bub = $('#byeBubble'); },
+    update(p) {
+      const e = ease(clamp(p / .4));
+      this.svg.style.transform = `translateY(${((1 - e) * 105).toFixed(1)}%)`;
+      this.bub.style.opacity = clamp((p - .45) / .15);
     }
   };
 
   /* ---------- Moteur : progression lissée de chaque scène ---------- */
   const scenes = $$('[data-scene]').map(el => {
     const def = S[el.dataset.scene]; if (def && def.init) def.init(el);
-    return { el, def, cur: 0, target: 0, veil: $('.veil', el) };
+    return { el, def, cur: 0, target: 0 };
   }).filter(s => s.def);
   const instant = new URLSearchParams(location.search).has('nosmooth');   // mode de test : pas de lissage
   let raf = 0, lastT = 0;
@@ -263,7 +328,6 @@
       sc.target = clamp(-r.top / Math.max(1, r.height - innerHeight));
       if (reduce) sc.cur = .62; else if (instant) sc.cur = sc.target; else { const d = sc.target - sc.cur; sc.cur = Math.abs(d) < .0004 ? sc.target : sc.cur + d * k; if (Math.abs(d) > .0004) busy = true; }
       sc.def.update(sc.cur, sc.el, now);
-      if (sc.veil) sc.veil.style.opacity = reduce ? 0 : clamp((sc.cur - .9) / .1);
       if (sc.def.live) busy = true;
     }
     if (busy && !reduce) raf = requestAnimationFrame(frame);
