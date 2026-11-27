@@ -1,0 +1,262 @@
+/* ==========================================================
+   Scènes animées : chaque scène est un bloc haut dont le contenu reste
+   épinglé à l'écran (.stick) pendant que le défilement le fait évoluer.
+   ========================================================== */
+:root{
+  --sea:#2f8f8a; --sea-deep:#1d5a5f; --sea-light:#8fd9cc;
+  --sky:#e8c98e; --wood:#b9753e; --wood-dark:#8f5a2e;
+}
+.scene{position:relative;height:var(--h,240vh)}
+.scene .stick{position:sticky;top:0;height:100vh;overflow:hidden}
+.scene .full{position:absolute;inset:0;width:100%;height:100%}
+.veil{position:absolute;inset:0;pointer-events:none;opacity:0;z-index:20}
+.scene-txt{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;z-index:8;padding:0 1.5rem;pointer-events:none}
+.scene-txt h2{margin:0 auto;max-width:14ch}
+.scene-txt p{margin:.5rem auto 0;color:inherit;opacity:.85}
+
+/* ---------- Passage 1 : montée de nuages (accueil vers à propos) ---------- */
+.s-clouds .stick{background:linear-gradient(var(--moss),var(--moss-deep))}
+.s-clouds .scene-txt{color:var(--moss-deep)}
+.milo-fly{position:absolute;left:50%;top:0;width:clamp(120px,16vw,210px);margin-left:calc(clamp(120px,16vw,210px) / -2);z-index:9;will-change:transform}
+
+/* ---------- À propos : grande photo ---------- */
+#apropos{padding:6rem 0 5rem;background:var(--moss-deep)}
+.about-grid{display:grid;grid-template-columns:minmax(300px,520px) 1fr;gap:4rem;align-items:center}
+.portrait{position:relative;justify-self:center;width:100%;max-width:520px;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{translate:0 -14px}}
+.portrait .arch{position:relative;width:100%;aspect-ratio:3/4;max-height:78vh;border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--orange);box-shadow:0 40px 80px rgba(0,0,0,.35),0 0 0 6px var(--cream)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.portrait .ini{position:absolute;inset:0;display:grid;place-items:center;font:800 5rem var(--display);color:var(--moss-deep)}
+.portrait .orbit{position:absolute;inset:-22px -22px auto auto;width:130px;height:130px;opacity:.8}
+.portrait .milo-sit{position:absolute;right:-6%;top:-9%;width:30%;z-index:2}
+.portrait .tag{position:absolute;left:-4%;bottom:7%;background:var(--cream);color:var(--moss-deep);padding:.5rem 1rem;border-radius:4px;font:700 1rem var(--display);transform:rotate(-3deg)}
+.about-text .lead{font-size:1.25rem;max-width:36ch}
+.about-text .links{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
+
+/* ---------- Valeurs animées ---------- */
+#valeurs{padding:7rem 0;background:var(--moss)}
+.vals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:2.5rem}
+.val{margin:0;border-top:1px solid var(--line);padding-top:1.2rem}
+.val svg{width:100%;height:auto;display:block;overflow:visible}
+.val h3{font-size:2rem;letter-spacing:-.03em;margin:1rem 0 .4rem}
+.val p{color:var(--muted);font-size:1rem;margin:0}
+.val svg *{animation-play-state:paused}
+.val.play svg *{animation-play-state:running}
+.v-ground{fill:var(--wood)}.v-void{fill:none;stroke:var(--line);stroke-dasharray:4 6}
+.v-oser-x{animation:vx 1.8s ease-in-out infinite alternate}
+.v-oser-y{animation:vy 1.8s ease-in-out infinite alternate}
+@keyframes vx{0%,12%{transform:translateX(0)}88%,100%{transform:translateX(150px)}}
+@keyframes vy{0%,12%{transform:translateY(0)}50%{transform:translateY(-62px)}88%,100%{transform:translateY(0)}}
+.v-p{fill:#59664b}.v-orb{fill:var(--orange);animation:orb 3.2s ease-in-out infinite}
+@keyframes orb{0%{transform:translate(40px,90px) scale(.6)}20%{transform:translate(40px,90px) scale(1)}45%,55%{transform:translate(120px,90px)}80%,90%{transform:translate(200px,90px)}100%{transform:translate(200px,90px) scale(.2)}}
+.v-p1{animation:glow1 3.2s infinite}.v-p2{animation:glow2 3.2s infinite}.v-p3{animation:glow3 3.2s infinite}
+@keyframes glow1{0%,22%{fill:var(--orange)}35%,100%{fill:#59664b}}
+@keyframes glow2{0%,38%{fill:#59664b}50%,70%{fill:var(--orange)}85%,100%{fill:#59664b}}
+@keyframes glow3{0%,70%{fill:#59664b}82%,96%{fill:var(--orange)}100%{fill:#59664b}}
+.v-dot{fill:#59664b}.v-dot-on{fill:var(--orange)}
+.v-lens{fill:none;stroke:var(--cream);stroke-width:4}.v-handle{stroke:var(--cream);stroke-width:6;stroke-linecap:round}
+.v-sweep{animation:sweep 5s ease-in-out infinite}
+@keyframes sweep{0%{transform:translate(36px,38px)}24%{transform:translate(184px,38px)}34%{transform:translate(184px,80px)}58%{transform:translate(36px,80px)}68%{transform:translate(36px,122px)}92%,100%{transform:translate(184px,122px)}}
+.v-ring{transform-origin:120px 80px;animation:ringp 2.4s ease-in-out infinite alternate}
+.v-join{fill:var(--orange);animation:join 2.4s ease-in-out infinite alternate}
+@keyframes join{0%{transform:translate(var(--x),var(--y));fill:#59664b}55%,100%{transform:translate(0,0);fill:var(--orange)}}
+@keyframes ringp{0%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* ---------- Compétences ---------- */
+#competences{padding:6rem 0;background:var(--moss-deep)}
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;margin-top:2rem}
+.skills h3{font-size:1.2rem;color:var(--orange);margin-bottom:.6rem}
+.skills ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.skills li{border:1px solid var(--line);border-radius:999px;padding:.1rem .8rem;font-size:.95rem}
+.strengths{margin-top:2.2rem;max-width:62ch;color:var(--muted)}
+
+/* ---------- CV en pleine page ---------- */
+.s-doc .stick{background:radial-gradient(ellipse at 50% 30%,var(--moss-soft),var(--moss-deep) 70%);perspective:1600px}
+.doc-title{position:absolute;left:0;right:0;top:30%;text-align:center;z-index:2;padding:0 1.5rem;pointer-events:none}
+.doc-title h2{margin:0 0 .5rem}
+.doc-wrap{position:absolute;left:50%;top:0;width:min(100vw,1400px);transform-origin:50% 0;will-change:transform;z-index:3}
+.doc-wrap img{display:block;width:100%;height:auto;background:#fff;box-shadow:0 50px 120px rgba(0,0,0,.55)}
+.doc-dl{position:absolute;right:1.2rem;bottom:1.2rem;z-index:6;opacity:0;transition:opacity .4s}
+.doc-dl.on{opacity:1}
+
+/* ---------- LinkedIn en pleine page ---------- */
+.s-li .stick{background:radial-gradient(ellipse at 50% 20%,var(--moss-soft),var(--moss-deep) 75%);perspective:1600px}
+.li-title{position:absolute;left:0;right:0;top:30%;text-align:center;z-index:2;pointer-events:none;padding:0 1.5rem}
+.li-title h2{margin:0 0 .5rem}
+.li-frame{position:absolute;left:50%;top:50%;width:min(94vw,880px);height:min(90vh,940px);margin-left:calc(min(94vw,880px) / -2);margin-top:calc(min(90vh,940px) / -2);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 50px 120px rgba(0,0,0,.55);z-index:3;will-change:transform}
+.li-bar{position:absolute;left:0;right:0;top:0;height:38px;background:#e9e7e2;display:flex;align-items:center;gap:.5rem;padding:0 .9rem;z-index:3;font:600 .8rem var(--display);color:#4a4a44}
+.li-bar i{width:11px;height:11px;border-radius:50%;background:#c4c0b6;display:block}
+.li-bar span{margin-left:.6rem;flex:1;background:#f7f6f2;border-radius:999px;padding:.12rem .8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.li-bar a{color:#0a66c2;text-decoration:none;font-weight:700}
+.li-win{position:absolute;inset:38px 0 0 0;overflow:hidden}
+.li-strip{position:absolute;left:0;right:0;top:0;will-change:transform}
+.li-strip img{display:block;width:100%;height:auto}
+.li-ph{height:62vh;border-bottom:1px solid #ddd;position:relative;background:#f4f2ee;color:#2b2b28;padding:1.5rem}
+.li-ph .ban{height:90px;background:linear-gradient(90deg,var(--moss),var(--orange));border-radius:8px}
+.li-ph .av{width:88px;height:88px;border-radius:50%;background:var(--orange);border:4px solid #fff;margin:-44px 0 0 1.2rem}
+.li-ph h4{margin:.6rem 0 .2rem;font-size:1.4rem}.li-ph p{margin:.1rem 0;color:#55554e;font-size:.95rem}
+.li-ph .sk{height:10px;background:#d9d6cf;border-radius:6px;margin:.6rem 0;width:80%}.li-ph .sk.s{width:55%}
+.li-ph .no{position:absolute;right:1rem;top:1rem;background:var(--orange);color:var(--moss-deep);border-radius:999px;width:2.2rem;height:2.2rem;display:grid;place-items:center;font:800 1.1rem var(--display)}
+.li-count{position:absolute;left:0;right:0;bottom:1rem;text-align:center;z-index:6;color:var(--cream);font:700 .95rem var(--display);text-shadow:0 2px 12px #000a}
+
+/* ---------- Toboggan en nuages ---------- */
+.s-tobo .stick{background:linear-gradient(#3b4a31,#566f4a 70%,#6f8f5e)}
+.tb-label{position:absolute;left:50%;top:6%;transform:translateX(-50%);text-align:center;width:min(92%,760px);z-index:6}
+.tb-label h2{margin:0 0 .3rem}.tb-label p{margin:0 auto;color:var(--cream);opacity:.85}
+#tbfx{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+.s-tobo svg.full{z-index:3}
+.wind{stroke:var(--cream);stroke-width:3;stroke-linecap:round;opacity:.35;animation:wind linear infinite}
+@keyframes wind{0%{transform:translateX(0);opacity:0}12%,88%{opacity:.4}100%{transform:translateX(-1500px);opacity:0}}
+
+/* ---------- Ma force : la persuasion ---------- */
+.s-force .stick{display:grid;grid-template-columns:minmax(280px,.9fr) 1.2fr;align-items:center;gap:2rem;padding:0 max(1.5rem,6vw);background:radial-gradient(ellipse at 75% 55%,#46583a,var(--moss) 70%)}
+.s-force h2{margin:.2rem 0 1rem}
+.lab{color:var(--orange);font:700 1rem var(--display);margin:0 0 .3rem}
+.conv{font:800 clamp(2.4rem,6vw,4.6rem)/1 var(--display);letter-spacing:-.04em;margin:.4rem 0 0}
+.conv small{font:400 1rem var(--text);color:var(--muted);letter-spacing:0;display:block}
+.s-force svg{width:100%;height:auto;max-height:86vh;overflow:visible}
+.pp{fill:#6f7a5d;transition:fill .5s;transform-box:fill-box;transform-origin:center}
+.pp.on{fill:var(--orange);animation:pop .55s}
+@keyframes pop{40%{transform:scale(1.5)}}
+.sw{fill:none;stroke:var(--cork);stroke-width:5;stroke-linecap:round;transform-origin:342px 330px;animation:sw 2.2s ease-out infinite;opacity:0}
+.sw:nth-of-type(2){animation-delay:.7s}.sw:nth-of-type(3){animation-delay:1.4s}
+@keyframes sw{0%{transform:scale(.4);opacity:.95}100%{transform:scale(2.6);opacity:0}}
+
+/* ---------- Passage 2 : Milo court (force vers axe) ---------- */
+.s-run .stick{background:linear-gradient(#35452d 0,#8a7a4a 55%,#e8c98e 78%)}
+.run-txt{position:absolute;left:0;right:0;top:11%;text-align:center;z-index:8;padding:0 1.5rem}
+.run-txt p{margin:0 auto;font:800 clamp(1.8rem,5vw,4rem)/1 var(--display);letter-spacing:-.035em;max-width:18ch;position:absolute;left:0;right:0;top:0}
+.run-txt{height:9rem}
+.dust{fill:var(--cream);opacity:0;animation:dust .7s ease-out infinite}
+.dust:nth-of-type(2){animation-delay:.23s}.dust:nth-of-type(3){animation-delay:.46s}
+@keyframes dust{0%{transform:translate(0,0) scale(.3);opacity:.7}100%{transform:translate(-90px,-20px) scale(1.4);opacity:0}}
+
+/* ---------- Mon axe : prioriser ---------- */
+.s-axe .stick{display:grid;grid-template-columns:minmax(280px,.9fr) 1.1fr;align-items:center;gap:2.5rem;padding:0 max(1.5rem,6vw);background:var(--moss-deep)}
+.s-axe h2{margin:.2rem 0 1rem}
+.board{position:relative;width:min(600px,100%);aspect-ratio:1;justify-self:center;border:1px solid var(--line)}
+.board::before,.board::after{content:"";position:absolute;background:var(--line)}
+.board::before{left:50%;top:0;bottom:0;width:1px}.board::after{top:50%;left:0;right:0;height:1px}
+.q{position:absolute;font:700 .8rem var(--display);color:var(--muted);opacity:0;padding:.4rem .6rem;width:50%}
+.q:nth-of-type(1){left:0;top:0;color:var(--orange)}.q:nth-of-type(2){left:50%;top:0}.q:nth-of-type(3){left:0;top:50%}.q:nth-of-type(4){left:50%;top:50%}
+.task{position:absolute;left:0;top:0;width:44%;padding:.45rem .6rem;background:var(--cream);color:var(--moss-deep);border-radius:4px;font:600 .82rem/1.25 var(--display);box-shadow:0 8px 20px rgba(0,0,0,.35);will-change:transform;margin:0}
+.task{transition:background .5s,color .5s}
+.task.s.q0{background:var(--orange)}.task.s.q2{background:#c9c2a8}.task.s.q3{background:transparent;color:var(--muted);box-shadow:none;outline:1px dashed var(--line);text-decoration:line-through}
+.axe-act{border-left:3px solid var(--orange);padding-left:1rem;margin-top:1.2rem}
+
+/* ---------- Passage 3 : la mer ---------- */
+.s-sea .stick{background:linear-gradient(var(--moss-deep),var(--moss-deep))}
+.s-sea .scene-txt{color:var(--cream)}
+
+/* ---------- Mauvais stress ---------- */
+#stress{padding:7rem 0;background:var(--sea-deep)}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem}
+.tool{margin:0;border-top:1px solid rgba(242,233,212,.3);padding-top:1.2rem}
+.tool svg{width:100%;height:auto;display:block;overflow:visible}
+.tool h3{font-size:1.8rem;letter-spacing:-.03em;margin:1rem 0 .3rem}
+.tool .when{color:var(--sea-light);font:700 .95rem var(--display);margin:0 0 .4rem}
+.tool p{font-size:1rem}
+.tool svg *{animation-play-state:paused}.tool.play svg *{animation-play-state:running}
+.orb{transform-origin:150px 100px;animation:breathe 10s ease-in-out infinite}
+.orb2{transform-origin:150px 100px;animation:breathe 10s ease-in-out infinite;opacity:.35}
+@keyframes breathe{0%,100%{transform:scale(.55)}40%,50%{transform:scale(1.15)}}
+.in-t,.out-t{font:700 22px var(--display);fill:var(--cream);text-anchor:middle;animation:txt 10s infinite}
+.out-t{animation-delay:5s}
+@keyframes txt{0%,2%{opacity:0}8%,38%{opacity:1}46%,100%{opacity:0}}
+.sea-w1{animation:wv 6s linear infinite}.sea-w2{animation:wv 9s linear infinite reverse}
+@keyframes wv{to{transform:translateX(-300px)}}
+.flame{transform-origin:150px 90px;animation:flame 1.6s ease-in-out infinite alternate}
+@keyframes flame{0%{transform:scale(1,.92) rotate(-2deg)}100%{transform:scale(.95,1.06) rotate(2deg)}}
+.glow{animation:glow 3s ease-in-out infinite alternate}
+@keyframes glow{0%{opacity:.25}100%{opacity:.6}}
+.tile{font:800 30px var(--display);text-anchor:middle;dominant-baseline:central}
+.t-a{animation:ta 4s ease-in-out infinite}.t-b{animation:tb 4s ease-in-out infinite}.t-c{animation:tc 4s ease-in-out infinite}
+@keyframes ta{0%,20%{transform:translateX(0);opacity:1}45%,100%{transform:translateX(52px);opacity:0}}
+@keyframes tb{0%,20%{transform:translateX(0);opacity:1}45%,100%{transform:translateX(-52px);opacity:0}}
+@keyframes tc{0%,40%{transform:scale(0);opacity:0}55%{transform:scale(1.25);opacity:1}65%,90%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:0}}
+
+/* ---------- Secteurs ---------- */
+#secteurs{padding:7rem 0;background:var(--moss)}
+.sect{margin-top:2rem;border-top:1px solid var(--line)}
+.sect article{display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;padding:1.8rem 0;border-bottom:1px solid var(--line);align-items:baseline}
+.sect h3{font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.035em;line-height:1}
+.sect p{margin:0}
+
+/* ---------- Réseau ---------- */
+#reseau{padding:7rem 0;background:var(--moss-deep)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0}
+.chip-b{border:1px solid var(--line);background:transparent;color:var(--cream);border-radius:999px;padding:.35rem 1rem;font:700 .9rem var(--display);cursor:pointer;transition:.2s}
+.chip-b:hover{border-color:var(--orange)}.chip-b[aria-pressed=true]{background:var(--orange);border-color:var(--orange);color:var(--moss-deep)}
+.net{width:100%;border-collapse:collapse;font-size:.96rem}
+.net th{text-align:left;font:700 .85rem var(--display);color:var(--orange);padding:.6rem .8rem;border-bottom:1px solid var(--cream)}
+.net td{padding:.9rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+.net td:first-child{font:700 1.02rem var(--display);white-space:nowrap}
+.net tr{transition:opacity .3s}.net tr.off{display:none}
+.mask{font-family:ui-monospace,Consolas,monospace;font-size:.88rem;white-space:nowrap;color:var(--cork)}
+.chains{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3.5rem}
+.chain h3{font-size:1.4rem;margin-bottom:1rem}
+.chain ol{list-style:none;margin:0;padding:0;display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.chain li{position:relative;padding:.7rem 1rem;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin-right:2.4rem;margin-bottom:.8rem;font-size:.92rem;max-width:210px;opacity:0;transform:translateX(-16px);transition:opacity .6s,transform .6s}
+.chain li b{display:block;font-family:var(--display)}
+.chain li:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:2.4rem;height:2px;background:var(--orange);transform-origin:left;transform:scaleX(0);transition:transform .5s .35s}
+.chain.play li{opacity:1;transform:none}.chain.play li:not(:last-child)::after{transform:scaleX(1)}
+.chain.play li:nth-child(2){transition-delay:.45s}.chain.play li:nth-child(3){transition-delay:.9s}
+.chain.play li:nth-child(2)::after{transition-delay:.8s}
+
+/* ---------- Objectifs 2027 : la route ---------- */
+.s-road .stick{background:linear-gradient(var(--moss-soft),var(--moss));display:flex;flex-direction:column;justify-content:center;padding:0 max(1.5rem,6vw)}
+.s-road h2{margin:0 0 .5rem}
+.road-svg{width:100%;height:auto;max-height:40vh;overflow:visible}
+.goals{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+.goal{border-top:2px solid var(--line);padding-top:.7rem;opacity:.35;transition:opacity .5s,border-color .5s}
+.goal.on{opacity:1;border-color:var(--orange)}
+.goal b{display:block;font:800 1.5rem/1 var(--display);color:var(--orange);letter-spacing:-.03em}
+.goal h3{font-size:1.1rem;margin:.3rem 0 .2rem}.goal p{font-size:.92rem;margin:0;color:var(--muted)}
+
+/* ---------- Grille d'évaluation ---------- */
+#evaluation{padding:7rem 0;background:var(--moss-soft)}
+.evalgrid{margin-top:2rem;border-top:2px solid var(--cream)}
+.evalrow{display:grid;grid-template-columns:70px minmax(150px,.7fr) 2fr auto;gap:1.2rem;align-items:baseline;padding:1.1rem .4rem;border-bottom:1px solid var(--line);text-decoration:none;color:var(--cream);transition:background .25s,padding .25s}
+.evalrow:hover{background:var(--panel);padding-left:1rem}
+.evalrow .n{font:800 2rem/1 var(--display);color:var(--orange);letter-spacing:-.04em}
+.evalrow .t{font:700 1.1rem var(--display)}
+.evalrow .a{color:var(--muted);font-size:1rem}
+.evalrow .go{font:700 .9rem var(--display);color:var(--orange);white-space:nowrap}
+
+/* ---------- Mobile ---------- */
+@media (max-width:800px){.scene{height:var(--hm,var(--h,240vh))}}
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .vals-grid,.skills{grid-template-columns:1fr 1fr}
+  .tools{grid-template-columns:1fr}
+  .chains{grid-template-columns:1fr}
+  .goals{grid-template-columns:1fr 1fr}
+  .sect article{grid-template-columns:1fr;gap:.6rem}
+  .evalrow{grid-template-columns:48px 1fr;gap:.2rem .8rem}
+  .evalrow .a{grid-column:2}.evalrow .go{grid-column:2}
+  .s-force .stick,.s-axe .stick{grid-template-columns:1fr;padding:4.5rem 1.2rem 0;gap:0;align-content:start}
+  .s-force svg{max-height:46vh}
+  .s-axe .board{width:min(94vw,440px)}
+  .net thead{display:none}
+  .net,.net tbody,.net tr,.net td{display:block;width:100%}
+  .net tr{border:1px solid var(--line);border-radius:6px;padding:.4rem .8rem;margin-bottom:.8rem;background:var(--panel)}
+  .net td{border:0;padding:.25rem 0}
+  .net td::before{content:attr(data-l) " : ";color:var(--orange);font:700 .8rem var(--display)}
+  .net td:first-child::before{content:""}.net td:first-child{white-space:normal}
+}
+@media (max-width:560px){.vals-grid,.skills{grid-template-columns:1fr}}
+
+/* ---------- Mouvement réduit : tout s'affiche à plat ---------- */
+@media (prefers-reduced-motion:reduce){
+  .scene{height:auto!important}
+  .scene .stick{position:relative;height:auto;min-height:60vh;overflow:visible}
+  .doc-wrap,.li-frame{position:relative!important;left:auto;top:auto;margin:2rem auto!important;transform:none!important;width:min(100%,900px)}
+  .li-frame{height:auto;overflow:visible}.li-win{position:relative;inset:auto}.li-strip{position:relative;transform:none!important}
+  .li-bar{position:relative}
+  .doc-title,.li-title,.milo-fly,.scene-txt{position:relative;top:auto;transform:none!important}
+  .s-force .stick,.s-axe .stick{display:block;padding:3rem 1.5rem}
+  .task{position:relative!important;left:auto!important;top:auto!important;transform:none!important;width:auto;margin:.3rem 0}
+  .board{aspect-ratio:auto;border:0}.board::before,.board::after{display:none}.q{position:relative;opacity:1;width:auto;left:auto!important;top:auto!important}
+  .chain li{opacity:1;transform:none}.chain li:not(:last-child)::after{transform:scaleX(1)}
+  .goal{opacity:1}
+}

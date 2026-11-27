@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aïssatou Gueye · Data Analyst</title>
+<meta name="description" content="Portfolio d'Aïssatou Gueye, Data Analyst et statisticienne, étudiante en Master 1 Économétrie, Statistiques à Aix-Marseille Université. Stage de 3 mois recherché à partir de mai 2027.">
+<meta name="theme-color" content="#2f3b27">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/scenes.css">
+</head>
+<body>
+<a class="skip" href="#apropos">Aller au contenu</a>
+
+<!-- Écran de chargement : Milo se dessine en plan d'architecte -->
+<div id="pre" aria-hidden="true">
+  <div class="pre-a"></div><div class="pre-b"></div>
+  <div class="pre-in">
+    <div class="pre-grid"></div>
+    <div class="pre-t"><span>Aïssatou Gueye</span><span>Portfolio, 2026</span></div>
+    <svg viewBox="0 0 300 300">
+      <circle class="cn" cx="150" cy="160" r="128" data-d/>
+      <g class="cn" data-d><path d="M150 14v30M150 276v30M4 160h30M266 160h30"/></g>
+      <g class="ln">
+        <circle cx="150" cy="160" r="82" data-d/>
+        <path d="M88 108 L80 44 L132 86 M212 108 L220 44 L168 86" data-d/>
+        <circle cx="122" cy="156" r="9" data-d/><circle cx="178" cy="156" r="9" data-d/>
+        <path d="M142 176h16l-8 9z M150 185c-8 14-20 10-24 4 M150 185c8 14 20 10 24 4" data-d/>
+        <path d="M96 172l-52-8M96 184l-54 10M204 172l52-8M204 184l54 10" data-d/>
+      </g>
+      <g class="dot"><circle cx="150" cy="14" r="4"/><circle cx="150" cy="306" r="4"/><circle cx="4" cy="160" r="4"/><circle cx="296" cy="160" r="4"/></g>
+    </svg>
+    <div class="pre-f"><span id="pre-msg">Chargement de l'univers de Milo</span><span class="pre-n" id="pre-n">0</span></div>
+  </div>
+</div>
+
+<div id="bar"></div>
+<nav id="dots" aria-label="Sections"></nav>
+
+<!-- Milo : dessiné une fois, réutilisé partout -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="milo" viewBox="0 0 240 240">
+      <path class="tail" d="M196 168 C 236 160 238 108 214 100" fill="none" stroke="#ff9a3c" stroke-width="16" stroke-linecap="round"/>
+      <ellipse cx="120" cy="178" rx="62" ry="52" fill="#ff9a3c"/>
+      <ellipse cx="120" cy="192" rx="34" ry="32" fill="#ffe2bd"/>
+      <ellipse cx="92" cy="226" rx="20" ry="10" fill="#ff9a3c"/><ellipse cx="148" cy="226" rx="20" ry="10" fill="#ff9a3c"/>
+      <path d="M62 78 L58 22 L102 54 Z" fill="#ff9a3c"/><path d="M178 78 L182 22 L138 54 Z" fill="#ff9a3c"/>
+      <path d="M68 66 L66 38 L90 56 Z" fill="#ff8fa3"/><path d="M172 66 L174 38 L150 56 Z" fill="#ff8fa3"/>
+      <circle cx="120" cy="96" r="64" fill="#ff9a3c"/>
+      <path d="M104 40 q4 12 0 22 M120 36 q0 14 0 26 M136 40 q-4 12 0 22" stroke="#e57a1f" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <g class="blink"><ellipse cx="96" cy="98" rx="9" ry="12" fill="#1d1a33"/><ellipse cx="144" cy="98" rx="9" ry="12" fill="#1d1a33"/>
+      <circle cx="99" cy="93" r="3.5" fill="#fff"/><circle cx="147" cy="93" r="3.5" fill="#fff"/></g>
+      <ellipse cx="78" cy="120" rx="11" ry="7" fill="#ff8fa3" opacity=".7"/><ellipse cx="162" cy="120" rx="11" ry="7" fill="#ff8fa3" opacity=".7"/>
+      <path d="M112 112 h16 l-8 9 z" fill="#ff8fa3"/>
+      <path d="M120 121 q-10 14 -22 6 M120 121 q10 14 22 6" fill="none" stroke="#1d1a33" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 112 l-30 -6 M60 122 l-32 4 M180 112 l30 -6 M180 122 l32 4" stroke="#ffe2bd" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+
+<!-- ============ Accueil ============ -->
+<header id="accueil" data-s="Accueil">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <svg class="milo-hero" id="miloHero" viewBox="0 0 240 240" role="img" aria-label="Milo, le chat orange qui te guide dans ce portfolio"><use href="#milo"/></svg>
+  <h1 class="hero-name" aria-label="Aïssatou Gueye"><span data-split>Aïssatou</span><span class="l2" data-split>Gueye</span></h1>
+  <div class="hero-foot fade hero-fade">
+    <p>Data Analyst et statisticienne, en Master 1 Économétrie, Statistiques à Aix-Marseille Université. Milo te guide dans mon univers.</p>
+    <a class="btn" href="#apropos">Commencer la visite</a>
+  </div>
+</header>
+
+<!-- ============ Passage : montée de nuages ============ -->
+<section class="scene s-clouds" id="passage1" data-scene="clouds" style="--h:230vh;--hm:190vh" aria-hidden="true">
+  <div class="stick">
+    <svg class="full" id="cloudsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"></svg>
+    <svg class="milo-fly" id="miloFly" viewBox="0 0 240 240"><use href="#milo"/></svg>
+    <div class="scene-txt" id="cloudTxt"><h2>Bienvenue sur mon île</h2></div>
+    <div class="veil" style="background:var(--moss-deep)"></div>
+  </div>
+</section>
+
+<!-- ============ À propos ============ -->
+<section id="apropos" data-s="À propos">
+  <div class="wrap about-grid">
+    <div class="portrait">
+      <div class="arch">
+        <span class="ini" aria-hidden="true">AG</span>
+        <img src="assets/img/aissatou.jpg" alt="Portrait d'Aïssatou Gueye" onerror="this.remove()">
+      </div>
+      <svg class="orbit" viewBox="0 0 130 130" aria-hidden="true"><circle cx="65" cy="65" r="60" fill="none" stroke="#e8c98e" stroke-width="1.5" stroke-dasharray="3 7"/><circle cx="65" cy="5" r="5" fill="#ff8a3d"/></svg>
+      <svg class="milo-sit" viewBox="0 0 240 240" aria-hidden="true"><use href="#milo"/></svg>
+      <span class="tag">Marseille</span>
+    </div>
+    <div class="about-text">
+      <h2>À propos de moi</h2>
+      <p class="lead">Data Analyst et statisticienne de formation, je cherche un stage de 3 mois à partir de mai 2027.</p>
+      <p>Je sais collecter et nettoyer des données, les analyser avec des méthodes statistiques et économétriques, les modéliser, puis les restituer en dashboard et en recommandations claires.</p>
+      <p>Habituée à coordonner des équipes, j'aime le travail en équipe et le contact avec les personnes qui utilisent les résultats.</p>
+      <div class="links">
+        <a class="btn" href="#cv">Voir mon CV</a>
+        <a class="btn ghost" href="#linkedin">Voir mon profil LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Valeurs animées ============ -->
+<section id="valeurs" data-s="Valeurs">
+  <div class="wrap">
+    <h2>Ce qui me définit</h2>
+    <p>Quatre valeurs, que je retrouve dans tout ce que j'entreprends.</p>
+    <div class="vals-grid">
+      <figure class="val">
+        <svg viewBox="0 0 240 160" role="img" aria-label="Milo saute par-dessus un vide">
+          <rect class="v-ground" x="0" y="110" width="80" height="50"/><rect class="v-ground" x="160" y="110" width="80" height="50"/>
+          <rect class="v-void" x="80" y="110" width="80" height="50"/>
+          <g transform="translate(14 0)"><g class="v-oser-x"><g class="v-oser-y"><use href="#milo" x="0" y="52" width="64" height="64"/></g></g></g>
+        </svg>
+        <figcaption><h3>Oser</h3><p>Je dis oui avant de me sentir prête, puis je me donne les moyens d'y arriver.</p></figcaption>
+      </figure>
+      <figure class="val">
+        <svg viewBox="0 0 240 160" role="img" aria-label="Une lumière passe de personne en personne">
+          <circle class="v-p v-p1" cx="40" cy="90" r="24"/><circle class="v-p v-p2" cx="120" cy="90" r="24"/><circle class="v-p v-p3" cx="200" cy="90" r="24"/>
+          <circle class="v-orb" r="12" cx="0" cy="0"/>
+        </svg>
+        <figcaption><h3>Transmettre</h3><p>Je rends les résultats clairs pour ceux qui n'ont pas le jargon, et j'aide les plus jeunes à progresser.</p></figcaption>
+      </figure>
+      <figure class="val">
+        <svg viewBox="0 0 240 160" role="img" aria-label="Une loupe révèle des points cachés">
+          <defs><clipPath id="lensclip"><circle class="v-sweep" r="26"/></clipPath></defs>
+          <g id="dots-grid"></g>
+          <g class="v-sweep"><circle class="v-lens" r="26"/><line class="v-handle" x1="19" y1="19" x2="38" y2="38"/></g>
+        </svg>
+        <figcaption><h3>Curiosité</h3><p>Quand il me manque une compétence, je me forme : un nouvel outil n'est jamais un obstacle.</p></figcaption>
+      </figure>
+      <figure class="val">
+        <svg viewBox="0 0 240 160" role="img" aria-label="Des points se rassemblent en cercle">
+          <g class="v-ring" id="join-g"></g>
+        </svg>
+        <figcaption><h3>Engagement</h3><p>Je donne de mon temps aux collectifs que je dirige : le REBAR, la CFED, Ndajeem Ndimbaal.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Compétences ============ -->
+<section id="competences" data-s="Compétences">
+  <div class="wrap">
+    <h2>Mes compétences et mes atouts</h2>
+    <div class="skills">
+      <div><h3>Données</h3><ul><li>Python</li><li>R</li><li>Stata</li><li>SPSS</li><li>SQL</li><li>PostgreSQL</li><li>BigQuery</li><li>AWS</li><li>Databricks</li></ul></div>
+      <div><h3>Visualisation</h3><ul><li>Power BI</li><li>Dash</li><li>Metabase</li><li>Looker Studio</li><li>R Shiny</li></ul></div>
+      <div><h3>ML et engineering</h3><ul><li>Régression</li><li>Analyse multivariée</li><li>scikit-learn</li><li>LLM / RAG</li><li>ETL / API</li><li>CI/CD</li></ul></div>
+      <div><h3>Collecte et autres</h3><ul><li>ODK</li><li>KoboToolbox</li><li>Survey Solution</li><li>QGIS</li><li>Excel / VBA</li><li>LaTeX</li><li>Canva</li><li>Figma</li></ul></div>
+    </div>
+    <p class="strengths">Mes atouts : relier la rigueur statistique à la clarté de la restitution, me former vite sur ce qui manque, et coordonner une équipe vers un livrable.</p>
+  </div>
+</section>
+
+<!-- ============ CV en pleine page ============ -->
+<section class="scene s-doc" id="cv" data-scene="cv" data-s="CV" style="--h:340vh;--hm:300vh">
+  <div class="stick">
+    <div class="doc-title" id="docTitle"><h2>Mon CV</h2><p>Fais défiler : il s'ouvre en grand.</p></div>
+    <div class="doc-wrap" id="docWrap"><img id="docImg" src="assets/cv/cv-aissatou-gueye.png" alt="Mon CV : Aïssatou Gueye, Data Analyst, Master 1 Économétrie, Statistiques. Expériences chez Myriad, à l'ANSD et à l'ENSAE, projets académiques, compétences et leadership."></div>
+    <a class="btn doc-dl" id="docDl" href="assets/cv/cv-aissatou-gueye.pdf" download>Télécharger le PDF</a>
+  </div>
+</section>
+
+<!-- ============ LinkedIn en pleine page ============ -->
+<section class="scene s-li" id="linkedin" data-scene="li" data-s="LinkedIn" style="--h:380vh;--hm:340vh">
+  <div class="stick">
+    <div class="li-title" id="liTitle"><h2>Mon profil LinkedIn</h2><p>Fais défiler : tu parcours mon profil comme sur LinkedIn.</p></div>
+    <div class="li-frame" id="liFrame">
+      <div class="li-bar"><i></i><i></i><i></i><span>linkedin.com/in/aïssatou-gueye</span><a href="https://www.linkedin.com/in/a%C3%AFssatou-gueye-211850207/" target="_blank" rel="noopener">Ouvrir</a></div>
+      <div class="li-win"><div class="li-strip" id="liStrip"></div></div>
+    </div>
+    <div class="li-count" id="liCount"></div>
+  </div>
+</section>
+
+<!-- ============ Toboggan en nuages ============ -->
+<section class="scene s-tobo" id="toboggan" data-scene="tobo" style="--h:340vh;--hm:230vh" aria-label="Transition : Milo glisse sur un toboggan de nuages">
+  <div class="stick">
+    <div class="tb-label"><h2>Hop, on glisse</h2><p>Milo descend vers ce qui me fait avancer.</p></div>
+    <svg class="full" id="tbsvg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="overflow:visible">
+      <g id="tbbg"></g>
+      <g id="tbwind"></g>
+      <path id="rail" d="M 130 330 C 900 340, 930 520, 260 600 S 80 860, 860 940" fill="none" stroke="none"/>
+      <g id="tbpuffs"></g>
+      <g id="rider"><g id="mcloud"></g><use href="#milo" x="-60" y="-100" width="120" height="120"/></g>
+    </svg>
+    <canvas id="tbfx"></canvas>
+    <div class="veil" style="background:var(--moss)"></div>
+  </div>
+</section>
+
+<!-- ============ Ma force principale ============ -->
+<section class="scene s-force" id="force" data-scene="force" data-s="Ma force" style="--h:260vh;--hm:230vh">
+  <div class="stick">
+    <div>
+      <p class="lab">Ma force principale</p>
+      <h2>La persuasion</h2>
+      <p>Je l'exerce <b>intentionnellement</b> : avant de parler, je cherche ce qui compte pour la personne en face, puis je construis mon argument autour de cela.</p>
+      <p><b>La preuve.</b> À la tête du REBAR, j'ai rassemblé les jeunes de Bargny autour d'activités éducatives et j'ai porté le projet auprès des autorités de la commune.</p>
+      <p class="conv"><span id="convN">0</span> <small>personnes convaincues sur 40, dans cette scène</small></p>
+    </div>
+    <svg viewBox="0 0 700 600" role="img" aria-label="Milo, sur une estrade, parle dans un mégaphone ; la foule devant lui s'illumine en orange">
+      <ellipse cx="350" cy="560" rx="330" ry="22" fill="#000" opacity=".25"/>
+      <rect x="60" y="470" width="190" height="80" rx="6" fill="#b9753e"/><rect x="60" y="470" width="190" height="14" rx="6" fill="#d89a5e"/>
+      <use href="#milo" x="68" y="262" width="190" height="190"/>
+      <path d="M232 340 L332 288 L332 384 Z" fill="#e8c98e"/><rect x="214" y="330" width="26" height="20" rx="4" fill="#8f5a2e"/>
+      <path d="M332 288 Q350 336 332 384" fill="none" stroke="#f2e9d4" stroke-width="6" stroke-linecap="round"/>
+      <path class="sw" d="M356 306 Q384 336 356 366"/><path class="sw" d="M356 306 Q384 336 356 366"/><path class="sw" d="M356 306 Q384 336 356 366"/>
+      <g id="crowd"></g>
+    </svg>
+    <div class="veil" style="background:var(--moss)"></div>
+  </div>
+</section>
+
+<!-- ============ Passage : Milo court ============ -->
+<section class="scene s-run" id="passage2" data-scene="run" style="--h:280vh;--hm:220vh" aria-hidden="true">
+  <div class="stick">
+    <div class="run-txt"><p id="runA">Une force, c'est bien.</p><p id="runB" style="opacity:0">Un axe de progrès, c'est mieux.</p></div>
+    <svg class="full" id="runsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <circle cx="1180" cy="560" r="150" fill="#ff8a3d" opacity=".18"/><circle cx="1180" cy="560" r="86" fill="#ff8a3d" opacity=".85"/>
+      <g id="hill1"></g><g id="hill2"></g><g id="hill3"></g>
+      <rect x="0" y="720" width="1600" height="200" fill="#232d1d"/>
+      <line id="ground" x1="0" y1="760" x2="1600" y2="760" stroke="#f2e9d4" stroke-opacity=".45" stroke-width="5" stroke-dasharray="60 40"/>
+      <g id="flag"><rect x="0" y="470" width="14" height="260" fill="#f2e9d4"/><rect x="14" y="480" width="360" height="110" rx="6" fill="#ff8a3d"/><text x="40" y="548" font-family="Arial Black,Arial,sans-serif" font-size="38" fill="#232d1d">Mon axe de progrès</text></g>
+      <g id="runner"><circle class="dust" cx="400" cy="730" r="22"/><circle class="dust" cx="400" cy="730" r="22"/><circle class="dust" cx="400" cy="730" r="22"/><use href="#milo" x="400" y="540" width="220" height="220"/></g>
+    </svg>
+    <div class="veil" style="background:var(--moss-deep)"></div>
+  </div>
+</section>
+
+<!-- ============ Mon axe d'amélioration ============ -->
+<section class="scene s-axe" id="axe" data-scene="axe" data-s="Mon axe" style="--h:260vh;--hm:230vh">
+  <div class="stick">
+    <div>
+      <p class="lab">Mon axe d'amélioration</p>
+      <h2>Organisation et sens des priorités</h2>
+      <p>Je travaille ma gestion du temps : savoir ce qui doit être fait maintenant, ce qui doit être planifié, et ce que je dois savoir lâcher.</p>
+      <p class="axe-act"><b>Mon action concrète.</b> Chaque lundi, je liste mes tâches de la semaine et je les classe avec deux questions : est-ce urgent, est-ce important ? Je bloque ensuite des créneaux dans mon agenda pour ce qui est important.</p>
+    </div>
+    <div class="board" id="board" role="img" aria-label="Huit tâches éparpillées se rangent dans quatre cases : à faire maintenant, à planifier, à limiter, à éviter">
+      <span class="q">Maintenant</span><span class="q">À planifier</span><span class="q">À limiter</span><span class="q">À éviter</span>
+    </div>
+    <div class="veil" style="background:var(--moss-deep)"></div>
+  </div>
+</section>
+
+<!-- ============ Passage : la mer ============ -->
+<section class="scene s-sea" id="passage3" data-scene="sea" style="--h:260vh;--hm:210vh" aria-hidden="true">
+  <div class="stick">
+    <svg class="full" id="seasvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="sg0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd9cc"/><stop offset="1" stop-color="#4fb3a9"/></linearGradient>
+      <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fb3a9"/><stop offset="1" stop-color="#2f8f8a"/></linearGradient>
+      <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f8f8a"/><stop offset="1" stop-color="#25777a"/></linearGradient>
+      <linearGradient id="sg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d5a5f"/><stop offset="1" stop-color="#1d5a5f"/></linearGradient></defs>
+      <path id="w0" fill="url(#sg0)"/><path id="w1" fill="url(#sg1)"/>
+      <g id="surfer"><ellipse cx="0" cy="62" rx="110" ry="14" fill="#e8c98e"/><use href="#milo" x="-80" y="-120" width="160" height="160"/></g>
+      <path id="w2" fill="url(#sg2)"/><path id="w3" fill="url(#sg3)"/>
+    </svg>
+    <div class="scene-txt" id="seaTxt"><h2>Quand ça déborde, je respire</h2></div>
+  </div>
+</section>
+
+<!-- ============ Outils contre le mauvais stress ============ -->
+<section id="stress" data-s="Anti-stress">
+  <div class="wrap">
+    <h2>Mes outils contre le mauvais stress</h2>
+    <p>Je ne réponds pas de la même façon à un stress ponctuel et à un stress qui dure.</p>
+    <div class="tools">
+      <figure class="tool">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Un cercle qui se gonfle et se dégonfle au rythme de la respiration">
+          <circle class="orb2" cx="150" cy="100" r="86" fill="#8fd9cc"/><circle class="orb" cx="150" cy="100" r="86" fill="none" stroke="#f2e9d4" stroke-width="3"/><circle class="orb" cx="150" cy="100" r="56" fill="#f2e9d4" opacity=".9"/>
+          <text class="in-t" x="150" y="108" fill="#1d5a5f" style="fill:#1d5a5f">Inspire</text><text class="out-t" x="150" y="108" style="fill:#1d5a5f">Expire</text>
+        </svg>
+        <figcaption><p class="when">Stress ponctuel</p><h3>La respiration</h3><p>Inspirer par le nez, souffler longuement : je ralentis avant de réagir.</p></figcaption>
+      </figure>
+      <figure class="tool">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Une petite flamme éclaire des vagues calmes">
+          <rect width="300" height="200" fill="none"/>
+          <circle class="glow" cx="150" cy="86" r="64" fill="#e8c98e"/>
+          <g class="flame"><path d="M150 52 C 136 74 138 92 150 100 C 162 92 164 74 150 52 Z" fill="#ff8a3d"/><path d="M150 72 C 144 84 145 92 150 96 C 155 92 156 84 150 72 Z" fill="#ffd28a"/></g>
+          <rect x="140" y="100" width="20" height="40" rx="4" fill="#f2e9d4"/>
+          <g class="sea-w1"><path d="M-300 160 q 37.5 -22 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 V 200 H -300 Z" fill="#2f8f8a"/></g>
+          <g class="sea-w2"><path d="M-300 176 q 37.5 -18 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 t 75 0 V 200 H -300 Z" fill="#25777a"/></g>
+        </svg>
+        <figcaption><p class="when">Stress qui dure</p><h3>La prière et la mer</h3><p>Je prends du recul : la prière pour me recentrer, la mer pour me vider la tête.</p></figcaption>
+      </figure>
+      <figure class="tool">
+        <svg viewBox="0 0 300 200" role="img" aria-label="Deux tuiles 2 fusionnent en une tuile 4, comme dans le jeu 2048">
+          <rect x="70" y="60" width="160" height="80" rx="8" fill="#25777a"/>
+          <g class="t-a"><rect x="76" y="66" width="68" height="68" rx="6" fill="#f2e9d4"/><text class="tile" x="110" y="100" fill="#1d5a5f" style="fill:#1d5a5f">2</text></g>
+          <g class="t-b"><rect x="156" y="66" width="68" height="68" rx="6" fill="#f2e9d4"/><text class="tile" x="190" y="100" style="fill:#1d5a5f">2</text></g>
+          <g class="t-c" style="transform-origin:150px 100px"><rect x="116" y="66" width="68" height="68" rx="6" fill="#ff8a3d"/><text class="tile" x="150" y="100" style="fill:#1d5a5f">4</text></g>
+        </svg>
+        <figcaption><p class="when">Stress qui dure</p><h3>Le jeu 2048</h3><p>Une tâche simple qui occupe l'esprit et fait retomber la tension.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Réalisations ============ -->
+<section id="realisations" data-s="Réalisations" aria-label="Mes réalisations">
+  <div class="hs-stick">
+    <div class="hs-head"><h2>Deux réalisations</h2></div>
+    <div class="hs-track" id="track">
+
+      <div class="c title"><h3>Un assistant IA pour l'équipe support</h3><p>Myriad, stage d'avril à septembre 2026. Projet de juin 2026, présenté sur place.</p><p>Fais défiler pour lire la suite.</p></div>
+      <div class="c"><h4>Circonstances<small>Quand, fonction, où ?</small></h4><p>Je suis Data Analyst. En juin 2026, lors de mon stage de fin de cycle chez Myriad, je travaille sur un projet pour le département support et ops : ses agents ont besoin d'un seul outil qui regroupe leurs sources d'information pour résoudre les incidents, avec des pistes de solution rapides.</p></div>
+      <div class="c"><h4>Mission<small>L'enjeu</small></h4><p>Je conçois un assistant IA pour l'équipe support.</p><p><b>Enjeu :</b> livrer une première version avant la date limite, accessible et utilisée fréquemment par les agents.</p></div>
+      <div class="c"><h4>Analyse<small>Le diagnostic</small></h4><ul><li>Budget contraignant, période serrée.</li><li>Des incidents similaires à retrouver en un temps record.</li><li>Une proposition de résolution et un plan d'action, fondés sur les résolutions précédentes et sur des runbooks d'une autre source.</li><li>Résumer le ticket, être pertinent et rapide.</li></ul></div>
+      <div class="c"><h4>Actions<small>Je + verbe au présent</small></h4><ul><li>Je compare les stacks possibles sous contraintes de budget et de temps.</li><li>Je fais une analyse exploratoire du corpus pour vérifier que les deux sources réunies sont exploitables.</li><li>Je me forme sur ce qui me manque.</li><li>Je construis une roadmap atteignable.</li></ul></div>
+      <div class="c"><h4>Résultats<small>Chiffres, processus, équipe</small></h4>
+        <div class="nums"><div><b>2</b><span>sources d'information réunies en un seul outil</span></div><div><b>~20</b><span>agents du support utilisent l'assistant</span></div><div><b>1</b><span>première version livrée dans les délais</span></div><div><b>Quelques s</b><span>pour retrouver un incident similaire</span></div></div>
+        <p>L'équipe l'utilise beaucoup et il lui fait gagner beaucoup de temps.</p></div>
+      <div class="c"><h4>Compétences<small>Je suis capable de…</small></h4><ul><li><b>Travailler</b> avec un groupe hétérogène.</li><li><b>Communiquer</b> des résultats à des profils peu à l'aise avec la statistique.</li><li><b>Découvrir</b> de nouveaux outils.</li><li><b>Concevoir</b> un assistant IA fondé sur le RAG.</li></ul></div>
+
+      <div class="c title"><h3>La pauvreté multidimensionnelle, département par département</h3><p>ANSD, août à octobre 2025. Estimation sur petits domaines, modèle de Fay-Herriot.</p></div>
+      <div class="c"><h4>Circonstances<small>Quand, fonction, où ?</small></h4><p>En août 2025, je suis stagiaire analyste statisticienne à l'ANSD, à la division de la méthodologie et de l'innovation.</p></div>
+      <div class="c"><h4>Mission<small>L'enjeu</small></h4><p>Je pilote la mesure de la pauvreté multidimensionnelle au niveau départemental avec les méthodes SAE, plus précisément Fay-Herriot.</p><p><b>Enjeux :</b> un temps restreint, une violation des hypothèses du modèle, et convaincre le jury.</p></div>
+      <div class="c"><h4>Analyse<small>Le diagnostic</small></h4><ul><li>Un projet de niveau master ou plus, au-dessus de mon niveau d'alors.</li><li>Normalement plus long que le temps du stage.</li><li>Les estimations du modèle doivent être plus pertinentes que les estimations directes.</li><li>Trouver de bonnes variables auxiliaires.</li></ul></div>
+      <div class="c"><h4>Actions<small>Je + verbe au présent</small></h4><ul><li>Je passe en revue les études empiriques.</li><li>Je cherche des variables auxiliaires dans d'autres sources : données satellitaires, recensement, enquêtes.</li><li>Je teste les hypothèses du modèle et j'ajuste : transformation de l'indicateur et lissage des variances d'échantillonnage.</li></ul></div>
+      <div class="c"><h4>Résultats<small>Chiffres</small></h4>
+        <div class="nums"><div><b>42/45</b><span>départements (93,3 %) gagnent en précision</span></div><div><b>~14 %</b><span>réduction moyenne</span></div><div><b>−46,3 %</b><span>meilleure amélioration : Kanel</span></div><div><b>1,47</b><span>ratio moyen MSE direct / MSE Fay-Herriot</span></div></div>
+        <p>Le jury m'attribue la meilleure note : <b>17/20</b>.</p></div>
+      <div class="c"><h4>Compétences<small>Je suis capable de…</small></h4><ul><li><b>Oser</b> et prendre des risques.</li><li><b>Achever</b> des projets dans des délais serrés.</li><li><b>Rédiger</b> et mener une recherche scientifique.</li><li><b>Mobiliser</b> un bagage en SAE.</li></ul></div>
+    </div>
+    <div class="hs-prog" aria-hidden="true"><i id="hsbar"></i></div>
+  </div>
+</section>
+
+<!-- ============ Leadership ============ -->
+<section id="soft" data-s="Leadership">
+  <div class="wrap">
+    <h2>Ce que j'ai dirigé</h2>
+    <ul class="list">
+      <li><b>Présidente du REBAR</b>, le Rassemblement des élèves et étudiants de Bargny pour la réussite.</li>
+      <li><b>Cheffe du projet</b> « Navétanes culturelles et citoyennes de génie en herbe », au sein du REBAR.</li>
+      <li><b>Présidente</b> de la Commission des femmes de l'ENSAE de Dakar (CFED).</li>
+      <li><b>Présidente</b> du collectif « Ndajeem Ndimbaal ».</li>
+      <li><b>Coordinatrice</b> du comité Design de l'Amicale des élèves et stagiaires de l'ENSAE Dakar.</li>
+      <li><b>Trésorière générale</b> de l'amicale des Sénégalais de l'ENSAE (AMSEN) de Dakar.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Secteurs ============ -->
+<section id="secteurs" data-s="Secteurs">
+  <div class="wrap">
+    <h2>Les secteurs où je veux travailler</h2>
+    <div class="sect">
+      <article><h3>Statistique publique et développement</h3><p>Mesurer pour orienter l'action publique : mon stage à l'ANSD m'a montré ce que des estimations fines changent pour un territoire.</p></article>
+      <article><h3>Télécoms et finance digitale</h3><p>Des données massives et des décisions rapides. Deux personnes de mon réseau y travaillent, à la Sonatel et chez Mixx by YAS.</p></article>
+      <article><h3>IA appliquée aux opérations</h3><p>Des assistants et des tableaux de bord qui font gagner du temps aux équipes : c'est ce que j'ai construit chez Myriad.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Réseau ============ -->
+<section id="reseau" data-s="Réseau">
+  <div class="wrap">
+    <h2>Mon réseau</h2>
+    <p>Des personnes et des communautés qui m'ont orientée, conseillée ou ouvert des portes. Les coordonnées sont volontairement masquées.</p>
+    <div class="chips" role="group" aria-label="Filtrer le réseau">
+      <button class="chip-b" data-f="all" aria-pressed="true">Tous</button>
+      <button class="chip-b" data-f="famille" aria-pressed="false">Famille</button>
+      <button class="chip-b" data-f="ensae" aria-pressed="false">ENSAE</button>
+      <button class="chip-b" data-f="ansd" aria-pressed="false">ANSD</button>
+      <button class="chip-b" data-f="entreprise" aria-pressed="false">Entreprises</button>
+    </div>
+    <table class="net">
+      <thead><tr><th>Contact</th><th>Lien avec moi</th><th>Organisation et rôle</th><th>Ce qu'il ou elle m'apporte</th><th>Coordonnées</th></tr></thead>
+      <tbody>
+        <tr data-c="famille entreprise"><td>Ibrahima Gueye</td><td data-l="Lien">Cousin</td><td data-l="Organisation">Responsable à la Sonatel</td><td data-l="Apport">Une porte d'entrée dans les télécoms. Je lui ai remis mon CV en août, sans suite pour l'instant : je prévois de le relancer.</td><td data-l="Coordonnées" class="mask">+221 77 4•• •• ••</td></tr>
+        <tr data-c="ensae"><td>Réseau des alumni de l'ENSAE</td><td data-l="Lien">Communauté</td><td data-l="Organisation">Anciens de l'ENSAE Dakar</td><td data-l="Apport">Mises en relation et conseils de parcours : c'est par lui que j'ai rencontré Fatou et Doudou Malick Faye.</td><td data-l="Coordonnées" class="mask">annuaire réservé aux membres</td></tr>
+        <tr data-c="ensae ansd"><td>Réseau des analystes statisticiens du RESA</td><td data-l="Lien">Communauté</td><td data-l="Organisation">Analystes statisticiens</td><td data-l="Apport">Échanges entre pairs, retours d'expérience et veille sur le métier.</td><td data-l="Coordonnées" class="mask">groupe privé</td></tr>
+        <tr data-c="entreprise"><td>Mon ancien manager</td><td data-l="Lien">Ancien manager</td><td data-l="Organisation">Data Engineer, Myriad</td><td data-l="Apport">Regard technique sur mes projets, et une référence professionnelle.</td><td data-l="Coordonnées" class="mask">+33 6 2• •• •• ••</td></tr>
+        <tr data-c="ensae ansd"><td>Fatou</td><td data-l="Lien">Alumni de l'ENSAE</td><td data-l="Organisation">Statisticienne, ANSD</td><td data-l="Apport">M'a mise en relation avec M. Kamara pour mon stage sur la pauvreté multidimensionnelle.</td><td data-l="Coordonnées" class="mask">+221 76 3•• •• ••</td></tr>
+        <tr data-c="ansd"><td>M. Kamara</td><td data-l="Lien">Expert de mon sujet de stage</td><td data-l="Organisation">Chef de division, direction des statistiques sociales, ANSD</td><td data-l="Apport">Expert de la pauvreté multidimensionnelle. M'a orientée vers le Dr Balde.</td><td data-l="Coordonnées" class="mask">+221 77 6•• •• ••</td></tr>
+        <tr data-c="ensae"><td>Dr Balde</td><td data-l="Lien">Enseignant</td><td data-l="Organisation">Directeur des études et des stages, ENSAE ; spécialiste des petits domaines</td><td data-l="Apport">Une expertise de référence sur l'estimation sur petits domaines, au cœur de mon projet.</td><td data-l="Coordonnées" class="mask">+221 78 1•• •• ••</td></tr>
+        <tr data-c="ensae"><td>Doudou Malick Faye</td><td data-l="Lien">Alumni de l'ENSAE</td><td data-l="Organisation">Data scientist</td><td data-l="Apport">Pour mon mémoire de 3e année, m'a orientée vers Mamadou Diop.</td><td data-l="Coordonnées" class="mask">+221 70 5•• •• ••</td></tr>
+        <tr data-c="ensae entreprise"><td>Mamadou Diop</td><td data-l="Lien">Ancien de l'ENSAE</td><td data-l="Organisation">Ingénieur statisticien économiste, Head of Steering and Performance, Mixx by YAS ; certifié monnaie digitale</td><td data-l="Apport">A répondu à mes interrogations et à mes inquiétudes pour mon mémoire.</td><td data-l="Coordonnées" class="mask">+221 77 9•• •• ••</td></tr>
+      </tbody>
+    </table>
+    <div class="chains">
+      <div class="chain"><h3>Pour mon stage à l'ANSD</h3><ol><li><b>Fatou</b>alumni, statisticienne</li><li><b>M. Kamara</b>expert de la pauvreté multidimensionnelle</li><li><b>Dr Balde</b>spécialiste des petits domaines</li></ol></div>
+      <div class="chain"><h3>Pour mon mémoire de 3e année</h3><ol><li><b>Doudou Malick Faye</b>alumni, data scientist</li><li><b>Mamadou Diop</b>Mixx by YAS</li></ol></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Objectifs 2027 : la route ============ -->
+<section class="scene s-road" id="objectifs" data-scene="road" data-s="Objectifs 2027" style="--h:260vh;--hm:230vh">
+  <div class="stick">
+    <h2>Mes objectifs pour 2027</h2>
+    <svg class="road-svg" id="roadsvg" viewBox="0 0 1600 300" aria-hidden="true">
+      <path id="road" d="M 60 220 C 300 40, 520 40, 760 150 S 1200 260, 1540 90" fill="none" stroke="#f2e9d4" stroke-opacity=".25" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 22"/>
+      <path id="road2" d="M 60 220 C 300 40, 520 40, 760 150 S 1200 260, 1540 90" fill="none" stroke="#ff8a3d" stroke-width="10" stroke-linecap="round"/>
+      <g id="flags"></g>
+      <g id="roadMilo"><use href="#milo" x="-45" y="-86" width="90" height="90"/></g>
+    </svg>
+    <div class="goals" id="goals">
+      <div class="goal"><b>Mai 2027</b><h3>Un stage de 3 mois</h3><p>Trouver un stage en fin de M1.</p></div>
+      <div class="goal"><b>Juin 2027</b><h3>Un anglais plus solide</h3><p>Passer un test de niveau, avec B2 pour cible.</p></div>
+      <div class="goal"><b>Septembre 2027</b><h3>Une alternance</h3><p>Trouver une alternance pour le M2.</p></div>
+      <div class="goal"><b>Décembre 2027</b><h3>Data engineering</h3><p>Monter en compétences, avec un pipeline ETL complet à montrer.</p></div>
+    </div>
+    <div class="veil" style="background:var(--moss-deep)"></div>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section id="contact" data-s="Contact">
+  <div class="wrap">
+    <h2>Écrivons-nous</h2>
+    <p>Pour un stage, une alternance ou simplement échanger sur mes projets.</p>
+    <div class="ct">
+      <div><span class="small">E-mail</span><b>aissatoug15@gmail.com</b><button class="btn ghost" data-copy="aissatoug15@gmail.com">Copier l'adresse</button></div>
+      <div><span class="small">LinkedIn</span><b>Aïssatou GUEYE</b><button class="btn ghost" data-copy="https://www.linkedin.com/in/a%C3%AFssatou-gueye-211850207/">Copier le lien</button></div>
+      <div><span class="small">GitHub</span><b>Aissatou150</b><button class="btn ghost" data-copy="Aissatou150">Copier l'identifiant</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Grille d'évaluation ============ -->
+<section id="evaluation" data-s="Évaluation">
+  <div class="wrap">
+    <h2>Grille d'évaluation</h2>
+    <p>Les neuf éléments demandés dans le cours, avec la réponse en une ligne et le lien pour la retrouver.</p>
+    <div class="evalgrid">
+      <a class="evalrow" href="#cv"><span class="n">1</span><span class="t">CV</span><span class="a">Un CV d'une page, du plus récent au plus ancien, qui annonce ma recherche de stage de 3 mois à partir de mai 2027.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#linkedin"><span class="n">2</span><span class="t">Page LinkedIn</span><span class="a">Mon profil, présenté en captures que l'on parcourt en défilant.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#force"><span class="n">3</span><span class="t">Force principale</span><span class="a">La persuasion, exercée intentionnellement. La preuve : les équipes que j'ai dirigées, du REBAR à la CFED.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#competences"><span class="n">4</span><span class="t">Compétences et atouts</span><span class="a">Données, visualisation, ML et engineering, collecte ; rigueur statistique, restitution claire, travail d'équipe.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#secteurs"><span class="n">5</span><span class="t">Secteurs visés</span><span class="a">Statistique publique et développement, télécoms et finance digitale, IA appliquée aux opérations.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#axe"><span class="n">6</span><span class="t">Axe d'amélioration</span><span class="a">Organisation et sens des priorités : une revue hebdomadaire des tâches, classées par urgence et importance.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#reseau"><span class="n">7</span><span class="t">Tableau de réseau</span><span class="a">Neuf contacts et communautés : famille, alumni de l'ENSAE, ANSD, entreprises, avec ce que chacun m'apporte.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#objectifs"><span class="n">8</span><span class="t">Objectifs 2027</span><span class="a">Un stage en mai, un test d'anglais en juin, une alternance en septembre, le data engineering d'ici décembre.</span><span class="go">Voir</span></a>
+      <a class="evalrow" href="#stress"><span class="n">9</span><span class="t">Outil contre le mauvais stress</span><span class="a">La respiration pour un stress ponctuel ; la prière, la mer et le jeu 2048 pour un stress qui dure.</span><span class="go">Voir</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>Aïssatou Gueye. Portfolio du cours de développement professionnel, 2026.</footer>
+
+<script src="js/main.js"></script>
+<script src="js/scenes.js"></script>
+</body>
+</html>
